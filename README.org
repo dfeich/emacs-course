@@ -8,6 +8,16 @@
 #+email: dfeich@gmail.com
 #+date: <2020-06-09 Tue>
 * An Emacs Course
+** Setup
+   The Emacs configuration for the course you can find at
+   https://github.com/dfeich/emacs-course-and-config.
+
+   It is best that you fork this repository and then clone your
+   forked copy to a user account's =~/emacs.d= directory on your
+   machine.
+
+   I use Emacs version 26.3 for this course.
+
 ** Introduction
 
    I had used Emacs for many years in its most simple way - just as a

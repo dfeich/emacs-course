@@ -1,18 +1,33 @@
 
 # Table of Contents
 
-1.  [An Emacs Course](#org635347c)
-    1.  [Introduction](#orgbbce681)
-    2.  [Planning of learning stages](#org0c8d478)
+1.  [An Emacs Course](#org3e690ed)
+    1.  [Setup](#org0f9650b)
+    2.  [Introduction](#orgdcf61a6)
+    3.  [Planning of learning stages](#org1dbc039)
 
 
 
-<a id="org635347c"></a>
+<a id="org3e690ed"></a>
 
 # An Emacs Course
 
 
-<a id="orgbbce681"></a>
+<a id="org0f9650b"></a>
+
+## Setup
+
+The Emacs configuration for the course you can find at
+<https://github.com/dfeich/emacs-course-and-config>.
+
+It is best that you fork this repository and then clone your
+forked copy to a user account's `~/emacs.d` directory on your
+machine.
+
+I use Emacs version 26.3 for this course.
+
+
+<a id="orgdcf61a6"></a>
 
 ## Introduction
 
@@ -59,7 +74,7 @@ So many people have contributed to this products and I feel indebted
 to all of them.
 
 
-<a id="org0c8d478"></a>
+<a id="org1dbc039"></a>
 
 ## Planning of learning stages
 
