@@ -1,0 +1,260 @@
+#+TODO: TODO(t!) WAIT(W@/!) | DONE(d!) CANCELED(c@) DELEGATED-AWAY(G@/!)
+#+TODO: BUG(b) | FIXED(f) WONTFIX(w)
+#+TITLE: DF Emacs Course01
+
+#+AUTHOR: Derek Feichtinger
+#+EMAIL: dfeich@gmail.com
+
+# the following property setting is inherited by all org headings
+# it is used by an advanced feature for presenting nicer agendas
+#+PROPERTY: agenda-group emacs_course
+
+* Basic Org mode
+** TODO Basic folding [0/3]
+   SCHEDULED: <2020-06-12 Fri>
+   :LOGBOOK:
+   - State "TODO"       from              [2020-06-11 Thu 10:38]
+   :END:
+   Org mode has the ability to fold all kinds of its text structures, e.g.
+   - headlines
+   - lists
+   - a set of structures we will encounter later, like drawers (e.g. the LOGBOOK drawer
+     you see in some tasks) and blocks
+
+   Try it out
+   - [ ] Go to some headlines and fold/unfold them just using <TAB>
+   - [ ] fold and unfold the whole document by using the keycombo "S-<TAB>"
+     anywhere in the document (except if you are on a special element, e.g. in
+     a list)
+   - [ ] go to some items in this list and experiment with the folding
+   - test 1
+     - test 2
+     - test 3
+       - test 4
+
+   You may want to read [[info:org#Visibility Cycling][info:org#Visibility Cycling]]
+
+** TODO The usefulness of lists [0/4]
+   SCHEDULED: <2020-06-12 Fri>
+   :LOGBOOK:
+   - State "TODO"       from              [2020-06-11 Thu 10:39]
+   :END:
+   
+   Org mode started its life as a highly versatile outline editor and it is
+   very efficient at keeping information in hierarchical lists. The headline
+   hierarchy is one example of this. But there also basic lists, and Org
+   provides powerful commands to compose and manipulate them
+
+   - [ ] use keycombo "<M-up>" (org-metaup) and keycombo "<M-down>" (org-metadown) 
+     to move list up and down
+   - [ ] use keycombo "<M-left>" and "<M-right>" to change the
+     hierarchy level of items. If you want to move a whole tree
+     including its sub-items, you need to use keycombo "<M-S-right>"
+     (org-shiftmetaright) or keycombo "<M-S-left>" (org-shiftmetaleft)
+   - [ ] add list items by using the keycombo "<M-Return>" (org-meta-return) at the end
+     of a list line
+   - [ ] change the list type and list-marker by using the keycombo "<S-left>" (org-shiftleft)
+     and "<S-right>" (org-shiftright) on different lines of the following list, and watch how
+     this cycles the symbols.
+   - [ ] you can mark several lines using the usual "<C-SPACE>" and then move
+     the cursor down. With the region highlighted, use "<S-M-right>". This
+     moves all the lines you marked one hierarchy level to the right.
+
+   My test list
+   - item 1
+     - item 1.1
+   - item 2
+     - item 2.1
+     - item 2.2
+   - item 3
+     - item 3.1
+     - item 3.2
+
+** TODO Links in Org mode [0/3]
+   SCHEDULED: <2020-06-12 Fri>
+   :LOGBOOK:
+   - State "TODO"       from              [2020-06-11 Thu 10:29]
+   :END:
+
+   - [ ] You can jump to a link's target using the keycombo "C-c C-o"
+     (org-open-at-point). Try it out with some of the following links.
+   - Org recognizes simple links in a text just based on a number
+     of string patterns 
+     - https://orgmode.org/worg/
+     - file:/tmp
+     - file:~/.emacs.d/init.el
+     - [[info:org#Link Format][info:org#Link Format]]  - a link to org's info pages
+     - man:grep - org is extensible. This link to a man page works through a definition
+       in our [[file:~/.emacs.d/org-init.el::(defun org-man-link-open (lnk)][org-init.el file]]
+   - [ ] move your cursor behind one of the links below and press backspace. This
+     reveals the nature of the link. Change the description and close it again with
+     the brackets.
+     - Links with descriptions follow this general format
+       : [[LINK][DESCRIPTION]]
+       - [[https://orgmode.org/worg/][the Worg Website]]
+       - [[file:/tmp][my tmp directory]]
+       - [[file:~/.emacs.d/init.el][init.el]]
+       - [[info:org#Link Format][the info page for the org link format]]  - a link to org's info pages
+       - [[* Basic folding]] a link of this structure points to a heading in the present document
+   - [ ] The keycombo "C-c C-l" (org-insert-link) can be used to insert and edit links.
+     When the cursor is on a link, you will edit the link. Try it with the
+     previous links
+       
+
+* Org mode Task and agenda system
+** TODO Keywords for Task states [0/2]
+   :LOGBOOK:
+   - State "TODO"       from              [2020-06-11 Thu 16:14]
+   :END:
+   - You can read this info page: [[info:org#TODO Basics][info:org#TODO Basics]]
+   - by default Org offers *TODO* and *DONE* states, but this can be easily
+     adapted in sophisticated ways, as in this file. At the top of the
+     file I defined a line defining different states
+     : #+TODO: TODO(t!) WAIT(W@/!) | DONE(d!) CANCELED(c@) DELEGATED-AWAY(G@/!)
+   - [ ] change the state of a task by using the keycombo "C-c C-t" (org-todo).
+     If there are multiple possibilities to which a state can evolve, you will
+     be offered a menu.
+   - you can fine-tune the states changes (details are found
+     in this advanced information:  [[info:org#Tracking TODO state changes][info:org#Tracking TODO state changes)]]
+     - directives 
+       - character :: a normal character defines the abbreviation used for that state 
+       - ! :: logs a timestamp for changes to this state
+       - @ :: upon changing to this state, asks for a comment
+       - /! :: also log a timestamp when leaving the state (if next state does
+	 not already involve a timestamp taking)
+   - [ ] If you are on char at the beginning of a headline (the initial star),
+     a number of shortcuts are available. If you hit "t" at this position,
+     you will be offered the task state switching as if you had used "C-c C-t".
+     Try it out.
+
+** TODO Scheduling tasks and deadlines [0/3]
+   Org mode can associate times for scheduling tasks. Don't raise your
+   Eyebrows - this is not an unnecessary complexity, but an essential
+   functionality that many systems are lacking.
+   - there is the time when a task needs to be finished. This is the
+     *deadline*. This is usually a pretty static timestamp (for most people,
+     at least...)
+   - but there is also the date/time when you want to work on the task. E.g.
+     the deadline may be in two weeks, but I want to work on this next Wednesday,
+     so a task manager should offer the notion of expressing this concept.
+     This is the *scheduled* time, and this may be changed quite a lot during
+     a tasks lifetime. If I do not finish the task on Wednesday, I may reschedule
+     it for finishing it on Friday. But this will not affect the deadline!
+   - [ ] Schedule a task. This you can do by using the keycombo "C-c C-s" while
+     you are in a task. A calendar will be displayed. Within this calendar you
+     move by
+     - <S-right>, <S-left>, <S-up>, <S-down> :: moves by days
+     - <M-S-left>, <M-S-right> :: moves by months
+     - <M-S-up>, <M-S-down> :: moves by years
+     - <RET> :: selects the date
+     - C-g :: cancels
+   - [ ] take note that now there is a "SCHEDULED" line added to the task, just
+     below the task's headline
+   - [ ] add a deadline to the same task by using the keycombo "C-c
+     C-d" (org-deadline). Take note that as with the scheduling, now
+     there is a "DEADLINE" keyword with timestamp below the task's headline.
+
+** TODO Changing time stamps [0/5]
+   Org uses time stamps in many locations. You saw
+   them when scheduling tasks and also when changing
+   the state of a task. Org offers a number of nice
+   keymappings to change timestamps fast.
+
+   Active timestamps will show up in the agenda, inactive ones
+   will not. For normal texts, it is best to always use the inactive
+   timestamps
+   - active timestamp: <2020-06-11 Thu 12:30>
+   - inactive timestamp: [2020-06-11 Thu 16:38]
+
+   Exercises
+   - [ ] go to a timestamp above and modify it. You can position
+     the cursor on any part of the date or the time. When you use
+     <S-up> or <S-down> the timestamp will be shifted accordingly.
+     <S-right> and <S-left> will always move the day.
+   - [ ] go to one of your scheduled or deadline timestamps and
+     change it like in the previous task
+   - [ ] for big changes one may want to use the calendar. Position
+     the cursor on a timestamp and use
+     - C-c . :: use calendar (leaves an active timestamp)
+     - C-c ! :: use calendar (leaves an inactive timestamp)
+   - [ ] the above keycombos can also be used to enter a new timestamp
+     anywhere in an org file. Try it.
+   - [ ] If you add the prefix argument "C-u" before one of the above
+     insertion commands, it will not only create a date timestamp, but
+     also add the current time. Try it with the keycombo "C-u C-c !"
+     
+** TODO Jump to tasks with helm-org
+   [[https://emacs-helm.github.io/helm/][Helm]] is a great system for selections. We will meet it later.
+   It is included and configured in my course's configuration.
+
+   - [ ] Use the keycombo "<f5> <f5>" (helm-org-agenda-files-headings).
+     When you now type characters, the selection options for matching
+     tasks will be narrowed down. Use the cursor to go up and down,
+     press <RETURN> to select the task to which you want to jump
+     
+** TODO Display the agenda and navigate within it [0/3]
+   - [ ] Use the keycombo "C-c C-a" to get the agenda menu. Choose "a"
+     for "agenda"
+   - [ ] try navigating in the agenda
+     - w :: week view
+     - d :: day view
+     - f :: forward (by day/week)
+     - b :: backward (by day/week)
+     - . :: go to today 
+     - j :: jump to some date with the calendar
+     - g :: rebuild agenda view
+   - [ ] position the cursor on a task and try the following different
+     ways to view a task
+     - <SPC> :: View task in other window without entering that window
+       (you stay in the agenda window)
+     - <TAB> :: go to task in other window
+     - <RETURN> :: switch to task buffer in this window 
+** TODO  Modify Scheduled times from the agenda view [0/2]
+   - [ ] In the agenda view, place the cursor on a task and
+     use <S-righ> to shift the scheduled date forward. An information
+     about the shifting will be shown in an overlay
+   - [ ] use "g" to rebuild the view (the overlays vanish)
+
+* Emacs help and info systems [0/0]
+  Emacs is very consistent in its basic key mappings. All basic help
+  functionalities start with the keycombo "C-h"
+
+** TODO Using the GNU Info system [0/1]
+   Emacs Documentation is in Info format. Though this is an old
+   format, it still is extremely useful and lightweight.
+
+   - [ ] Enter the info system by using the keycombo "C-h i" (info).
+     Exit it again by using "q". Maybe it is best, if you open a
+     second window (e.g. by doing "C-x 3" to split the current one),
+     so that you still can see the instructions below
+
+   These are the key combinations you should try to remember in order
+   to navigate info
+   - <TAB> :: Jump to the next link
+   - <RET> :: visit a link
+   - l :: go to the last page you viewed
+   - n :: go to the next page
+   - p :: go to the previous page
+   - u :: go up in the hierarchy
+   - t :: go to the top of the current info node
+   - d :: go to the top of all info nodes (the info main directory)
+   - q :: quit info
+   - i :: allows you to search the keyword index of this info file 
+   - g :: go to another node. Most useful if you want to go to another
+     top node in a file. You need to put the node into parentheses, e.g.
+     type: g (emacs). Tab expansion is available
+
+** TODO What does this key or combo do?
+
+   - [ ] To find out what a certain key can do in the current
+     context, use the keycombo "<C-h> k". You are then asked
+     to enter the combo. Try to find out what is mapped to
+     the "C-c C-t" combination.
+
+** TODO Get help on the current mode [0/2]
+   - [ ] Invoke the help for the current buffer's major mode by
+     using the keycombo "C-h m"
+   - [ ] In the course's configuration I included a helm mode
+     for fast finding keys of the current mode.
+     Try the keycombo "<f5> d" (helm-descbinds). You now can narrow
+     down to commands
