@@ -1,14 +1,139 @@
 #+TODO: TODO(t!) WAIT(W@/!) | DONE(d!) CANCELED(c@) DELEGATED-AWAY(G@/!)
 #+TODO: BUG(b) | FIXED(f) WONTFIX(w)
-#+TITLE: DF Emacs Course01
+#+TITLE: Emacs Course 01
 
 #+AUTHOR: Derek Feichtinger
 #+EMAIL: dfeich@gmail.com
 
 # the following property setting is inherited by all org headings
-# it is used by an advanced feature for presenting nicer agendas
+# it is used by an advanced feature for presenting nicer agenda views
+# (org-super-agenda)
 #+PROPERTY: agenda-group emacs_course
 
+* Basic Emacs usage
+** TODO Loading and saving files [0/4]
+   :LOGBOOK:
+   - State "TODO"       from              [2020-06-11 Thu 23:07]
+   :END:
+   - [ ] the standard way of loading a file uses the keycombo "C-c
+     C-f" (ido-find-file). 
+     - In this emacs configuration we have configured
+       the *ido* system. This offers you a nice way of selecting the file
+       with some fuzzy matching (e.g. when you enter "cb" it will show you
+       "course-basics" among the hits, since it matches the initials)
+     - when you enter "//" it will jump to the root file system.
+     - when you enter "~/" it will jump to your home directory
+     - if you enter the name of a nonexistent file "[nomatch]" will be displayes,
+       if you hit <RETURN> it will offer to create this file as a new file. Confirm
+       with a second <RETURN>.
+   - [ ] a very powerful file navigation tool is available via the
+     helm package in this Emacs configuration. Use the keycombo "<f5> f"
+     (helm-find-files).
+     - you can use the arrow keys to move up, down, into and out of directories
+     - typing will narrow the candidates down according to your search expression
+       as you type
+     - <RETURN> opens the file
+     - typing the name of a nonexistent file will offer to create it. If you type
+       a nonexistent filename and terminate it by a "/", you will be asked whether
+       you want to create that directory.
+   - [ ] Save a file buffer after changing it by using the keycombo
+     "C-x C-s" (save-buffer)
+   - [ ] Save a buffer under another name by using "C-x C-w" (ido-write-file).
+
+** TODO searching for strings and regular expressions [0/4]
+   :LOGBOOK:
+   - State "TODO"       from              [2020-06-11 Thu 23:07]
+   :END:
+   - [ ] Use the keycombo "C-s" (isearch-forward) to do an incremental
+     string search forward. Hitting "C-s" again jumps to the next match.
+     <RETURN> exits the search, placing the cursor after the current hit.
+     - You can get extensive help on isearch by looking up its help page
+       by "C-h k C-s" (q.v. [[*What does this key or combo do?][What does this key or combo do?]])
+   - [ ] Use the keycombo "C-u C-s" (isearch-forward) to do an incremental
+     regexp search forward.
+   - [ ] The keycombos "C-r" and "C-u C-r" do the same in backwards direction
+   - [ ] One of the best search tools uses the helm framework and is included
+     in this configuration: [[https://github.com/emacsorphanage/helm-swoop][helm-swoop]]. Use "<f5> s" (helm-swoop) to enter a
+     search mode where you see all the hits that match your current search expression
+     as you type.
+     - while you are searching, you can go to the edit mode (look at the top line. The
+       command is listed there, "C-c C-e"). In edit mode you can change all the lines, and
+       then write them back to the buffer.
+     - If you use [M-i] while searching (also mentioned in the top line), the search
+       will go over all open buffers of this Emacs session.
+
+** TODO Executing Emacs commands and getting information about them [0/4]
+   Emacs has a huge number of commands, many of them are not bound to
+   key combinations. Such commands can be entered after using the
+   key combo "M-x". In this configuration we have configured the
+   package "smex" which makes the selection of commands much easier.
+
+   - [ ] run the command "emacs-version" by using the keycombo "M-x".
+     The fuzzy matching of smex will allow you to enter e.g. the initials
+     "ev", or you can type "emav", or "emacs-ver". <RETURN> selects the
+     current command.
+   - [ ] if you want to get information about a command in smex, you can
+     invoke the help system by using the keycombo "C-h f" (describe-function)
+     while being in the smex selection dialog.
+   - [ ] If you want to get information about a function written in the text,
+     you can use the keycombo "C-h f" while the cursor is on the name of a
+     function. Try it with the one on the next line
+     :                emacs-version
+     Emacs will offer you the word under the cursor as the default for looking
+     up the respective help page.
+   - [ ] One of the most powerful ways to get information is by using the
+     helm package that is configured in this Emacs configuration. You
+     can invoke the keycombo "<f5> a" (helm-apropos). You can then search
+     for Emacs commands, functions, and variables.
+     - if your cursor is on a name that matches an Emacs function or variable,
+       it will be already used as the default in the narrowing framework
+     - <RETURN> will jump to the respective help page
+     - even better, "C-j" will show the help page while staying in helm mode,
+       so you can look at multiple commands.
+
+* Emacs help and info systems
+  Emacs is very consistent in its basic key mappings. All basic help
+  functionalities start with the keycombo "C-h"
+
+** TODO Using the GNU Info system [0/1]
+   Emacs Documentation is in Info format. Though this is an old
+   format, it still is extremely useful and lightweight.
+
+   - [ ] Enter the info system by using the keycombo "C-h i" (info).
+     Exit it again by using "q". Maybe it is best, if you open a
+     second window (e.g. by doing "C-x 3" to split the current one),
+     so that you still can see the instructions below
+
+   These are the key combinations you should try to remember in order
+   to navigate info
+   - <TAB> :: Jump to the next link
+   - <RET> :: visit a link
+   - l :: go to the last page you viewed
+   - n :: go to the next page
+   - p :: go to the previous page
+   - u :: go up in the hierarchy
+   - t :: go to the top of the current info node
+   - d :: go to the top of all info nodes (the info main directory)
+   - q :: quit info
+   - i :: allows you to search the keyword index of this info file 
+   - g :: go to another node. Most useful if you want to go to another
+     top node in a file. You need to put the node into parentheses, e.g.
+     type: g (emacs). Tab expansion is available
+
+** TODO What does this key or combo do?
+
+   - [ ] To find out what a certain key can do in the current
+     context, use the keycombo "<C-h> k". You are then asked
+     to enter the combo. Try to find out what is mapped to
+     the "C-c C-t" combination.
+
+** TODO Get help on the current mode [0/2]
+   - [ ] Invoke the help for the current buffer's major mode by
+     using the keycombo "C-h m"
+   - [ ] In the course's configuration I included a helm mode
+     for fast finding keys of the current mode.
+     Try the keycombo "<f5> d" (helm-descbinds). You now can narrow
+     down to commands
 * Basic Org mode
 ** TODO Basic folding [0/3]
    SCHEDULED: <2020-06-12 Fri>
@@ -99,7 +224,6 @@
    - [ ] The keycombo "C-c C-l" (org-insert-link) can be used to insert and edit links.
      When the cursor is on a link, you will edit the link. Try it with the
      previous links
-       
 
 * Org mode Task and agenda system
 ** TODO Keywords for Task states [0/2]
@@ -215,46 +339,3 @@
      about the shifting will be shown in an overlay
    - [ ] use "g" to rebuild the view (the overlays vanish)
 
-* Emacs help and info systems [0/0]
-  Emacs is very consistent in its basic key mappings. All basic help
-  functionalities start with the keycombo "C-h"
-
-** TODO Using the GNU Info system [0/1]
-   Emacs Documentation is in Info format. Though this is an old
-   format, it still is extremely useful and lightweight.
-
-   - [ ] Enter the info system by using the keycombo "C-h i" (info).
-     Exit it again by using "q". Maybe it is best, if you open a
-     second window (e.g. by doing "C-x 3" to split the current one),
-     so that you still can see the instructions below
-
-   These are the key combinations you should try to remember in order
-   to navigate info
-   - <TAB> :: Jump to the next link
-   - <RET> :: visit a link
-   - l :: go to the last page you viewed
-   - n :: go to the next page
-   - p :: go to the previous page
-   - u :: go up in the hierarchy
-   - t :: go to the top of the current info node
-   - d :: go to the top of all info nodes (the info main directory)
-   - q :: quit info
-   - i :: allows you to search the keyword index of this info file 
-   - g :: go to another node. Most useful if you want to go to another
-     top node in a file. You need to put the node into parentheses, e.g.
-     type: g (emacs). Tab expansion is available
-
-** TODO What does this key or combo do?
-
-   - [ ] To find out what a certain key can do in the current
-     context, use the keycombo "<C-h> k". You are then asked
-     to enter the combo. Try to find out what is mapped to
-     the "C-c C-t" combination.
-
-** TODO Get help on the current mode [0/2]
-   - [ ] Invoke the help for the current buffer's major mode by
-     using the keycombo "C-h m"
-   - [ ] In the course's configuration I included a helm mode
-     for fast finding keys of the current mode.
-     Try the keycombo "<f5> d" (helm-descbinds). You now can narrow
-     down to commands

@@ -1,33 +1,42 @@
 
 # Table of Contents
 
-1.  [An Emacs Course](#org3e690ed)
-    1.  [Setup](#org0f9650b)
-    2.  [Introduction](#orgdcf61a6)
-    3.  [Planning of learning stages](#org1dbc039)
+1.  [An Emacs Course](#orgcbc4fc7)
+    1.  [Setup](#orgc0a47fd)
+    2.  [Introduction](#org55b2ef5)
+    3.  [Planning of learning stages](#orge773707)
 
 
 
-<a id="org3e690ed"></a>
+<a id="orgcbc4fc7"></a>
 
 # An Emacs Course
 
 
-<a id="org0f9650b"></a>
+<a id="orgc0a47fd"></a>
 
 ## Setup
 
 The Emacs configuration for the course you can find at
-<https://github.com/dfeich/emacs-course-and-config>.
-
-It is best that you fork this repository and then clone your
-forked copy to a user account's `~/emacs.d` directory on your
+<https://github.com/dfeich/emacs-course-and-config>. 
+It is best that you fork that repository and then clone your
+forked copy to your (or a test user's) account's `~/emacs.d` directory on your
 machine.
 
-I use Emacs version 26.3 for this course.
+This repository contains the course in the form of Org mode task files.
+It should be checked out into the `~/Documents` folder of your account.
+The emacs configuration for the course contains settings that expect to
+find the files under `~/Documents/orgcourse`. If you check out to another
+location, you need to adapt the configuration.
+
+When you start Emacs with the new configuration for the first time, it
+will download all the missing packages from GNU, MELPA, and Org. This
+may take some minutes.
+
+I use Emacs version 26.3 and Org version 9.x for this course.
 
 
-<a id="orgdcf61a6"></a>
+<a id="org55b2ef5"></a>
 
 ## Introduction
 
@@ -74,12 +83,12 @@ So many people have contributed to this products and I feel indebted
 to all of them.
 
 
-<a id="org1dbc039"></a>
+<a id="orge773707"></a>
 
 ## Planning of learning stages
 
 This is what I am planning to cover. Let's see whether I'll be able to
-pull throgh&#x2026;
+pull through&#x2026;
 
 The sequence beyond step 1 is up to change&#x2026; I will teach a small
 number of work colleagues in this first round. I'll adapt to the
