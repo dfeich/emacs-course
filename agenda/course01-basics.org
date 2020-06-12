@@ -15,7 +15,7 @@
    :LOGBOOK:
    - State "TODO"       from              [2020-06-11 Thu 23:07]
    :END:
-   - [ ] the standard way of loading a file uses the keycombo "C-c
+   - [ ] the standard way of loading a file uses the keycombo "C-x
      C-f" (ido-find-file). 
      - In this emacs configuration we have configured
        the *ido* system. This offers you a nice way of selecting the file
@@ -204,18 +204,21 @@
    - [ ] You can jump to a link's target using the keycombo "C-c C-o"
      (org-open-at-point). Try it out with some of the following links.
    - Org recognizes simple links in a text just based on a number
-     of string patterns 
+     of string patterns
      - https://orgmode.org/worg/
      - file:/tmp
      - file:~/.emacs.d/init.el
      - [[info:org#Link Format][info:org#Link Format]]  - a link to org's info pages
      - man:grep - org is extensible. This link to a man page works through a definition
        in our [[file:~/.emacs.d/org-init.el::(defun org-man-link-open (lnk)][org-init.el file]]
-   - [ ] move your cursor behind one of the links below and press backspace. This
-     reveals the nature of the link. Change the description and close it again with
-     the brackets.
+   - [ ] move your cursor behind one of the links below and press backspace. This will
+     delete the closing bracket of the link, and you will see the underlying link syntax
+     displayed. When you close the bracket again, Org will only show the description.
+     You can just change the description by writing over it. If you want to change the
+     underlying link address, see below.
      - Links with descriptions follow this general format
-       : [[LINK][DESCRIPTION]]
+       :       [[LINK][DESCRIPTION]]
+       here are some example links
        - [[https://orgmode.org/worg/][the Worg Website]]
        - [[file:/tmp][my tmp directory]]
        - [[file:~/.emacs.d/init.el][init.el]]
@@ -305,7 +308,8 @@
      anywhere in an org file. Try it.
    - [ ] If you add the prefix argument "C-u" before one of the above
      insertion commands, it will not only create a date timestamp, but
-     also add the current time. Try it with the keycombo "C-u C-c !"
+     also add the current time. Try it with the keycombo "C-u C-c !",
+     select a date from the offered calendar
      
 ** TODO Jump to tasks with helm-org
    [[https://emacs-helm.github.io/helm/][Helm]] is a great system for selections. We will meet it later.
@@ -317,25 +321,34 @@
      press <RETURN> to select the task to which you want to jump
      
 ** TODO Display the agenda and navigate within it [0/3]
-   - [ ] Use the keycombo "C-c C-a" to get the agenda menu. Choose "a"
-     for "agenda"
-   - [ ] try navigating in the agenda
+   - [ ] Use the keycombo "C-c a" to get the agenda menu. In the menu
+     choose "a" for "agenda". You will get the default view of the agenda,
+     which is the present week.
+   - [ ] try navigating in the agenda using these keys
      - w :: week view
      - d :: day view
      - f :: forward (by day/week)
      - b :: backward (by day/week)
      - . :: go to today 
-     - j :: jump to some date with the calendar
-     - g :: rebuild agenda view
+     - j :: jump to some date using the calendar
+     - g :: rebuild the agenda view
    - [ ] position the cursor on a task and try the following different
      ways to view a task
      - <SPC> :: View task in other window without entering that window
        (you stay in the agenda window)
      - <TAB> :: go to task in other window
      - <RETURN> :: switch to task buffer in this window 
-** TODO  Modify Scheduled times from the agenda view [0/2]
+
+** TODO Modify Scheduled times from the agenda view [0/2]
    - [ ] In the agenda view, place the cursor on a task and
      use <S-righ> to shift the scheduled date forward. An information
-     about the shifting will be shown in an overlay
+     about the shifting will be shown in an overlay. The respective
+     time stamp in the org file will be changed. If you use the
+     Emacs undo command (mapped to multiple key, e.g. "C-_"), the change
+     will be reverted in the agenda as well as in the Org file.
    - [ ] use "g" to rebuild the view (the overlays vanish)
+   - This is the typical workflow you will do in the morning and
+     at the end of a day. You schedule the tasks you want to do on the
+     current day to "today" and work on them. In the evening, you can
+     decide to reschedule open tasks to some other day.
 
