@@ -11,6 +11,9 @@
 #+PROPERTY: agenda-group emacs_course
 
 * Basic Emacs usage
+  Emacs contains an excellent tutorial. You can reach it by using
+  the keycombo "C-h t". The following exercises only contain a subset
+  of commands.
 ** TODO Loading and saving files [0/4]
    :LOGBOOK:
    - State "TODO"       from              [2020-06-11 Thu 23:07]
@@ -40,6 +43,61 @@
      "C-x C-s" (save-buffer)
    - [ ] Save a buffer under another name by using "C-x C-w" (ido-write-file).
 
+** TODO Understanding Emacs windows [0/6]
+   Emacs is able to divide up its screen space into logical
+   areas. They are called /windows/. It can do this even while running
+   on an ASCII terminal. It has nothing to do with the graphical
+   window manager within your Emacs session may be running.
+
+   This is a typical source of confusion for new users, because the
+   term "window" is normally used for the main windows in which your
+   graphical window manager (like Gnome or KDE) are running
+   applications. In Emacs these "external" windows are called /frames/.
+   So, Emacs is running in one or multiple frames provided by your
+   window manager, and each frame may contain multiple Emacs windows
+   sharing the frame.
+
+   - [ ] split the current window horizontally in 2 windows. Use
+     the keycombo "C-x 2" (split-window-below)
+   - [ ] split the window in which you currently are in two vertical
+     windows by using the keycombo "C-x 3" (split-window-right)
+   - [ ] you can switch to another window by using the keycombo
+     "C-x o" (other-window)
+   - [ ] you can scroll the "other" window by using "<M-PageUp>" and
+     "<M-PageDown>", or alternatively "<C-M-v>" and "<C-M-S-v>"
+     (scroll-other-window). This is very practical for scrolling the
+     documentation without leaving the current window.
+   - [ ] two make the current window the only window of the frame,
+     you can use the keycombo "C-x 1" (delete-other-windows)
+   - [ ] split the window again using the commands above. You can
+     close the window in which the cursor is, by using the keycombo
+     "C-x 0" (delete-window)
+
+** TODO selecting, copying and pasting [0/6]
+   Emacs predates the time where the /Cut, Copy & Paste/ expressions
+   were coined, and the old command names still are used.
+   - [ ] You can select text by placing the cursor on the starting
+     position and then use the keycombo "C-SPC" (set-mark-command). The
+     position where you do this is called /the mark/. When you now move
+     the cursor you will see that the region between the mark and your current
+     position will be highlighted. This selected text is called /the region/.
+   - [ ] Cutting text is called /killing text/. You can kill the text
+     by using the keycombo "c-k" (kill-line, or similar commands depending
+     on the current mode). Kill this sentence.
+   - [ ] You can insert/paste the killed text somewhere else by moving
+     your cursor to the new position and using the keycombo "C-y" (org-yank).
+     This action is called /yanking/. Insert your killed text here:
+   - [ ] If you do not want to cut the text, but you just want to copy is,
+     you invoke the keycombo "M-w" (kill-ring-save). This leaves the region
+     as it is, but you can insert it somewhere else with "C-y" as above.
+   - [ ] When you invoke "C-y" multiple times in a row, the inserted
+     text will be exchanged against an earlier killed text. This way
+     you can go throught the history of copied text pieces. The memory
+     where the copied texts are stored is called the "kill-ring"
+   - [ ] an even simpler way to work with the "kill-ring" is to
+     use the respective helm command which in this Emacs config is
+     mapped to "<f5> k" (helm-show-kill-ring). Try it out.
+     
 ** TODO searching for strings and regular expressions [0/4]
    :LOGBOOK:
    - State "TODO"       from              [2020-06-11 Thu 23:07]
@@ -228,6 +286,38 @@
      When the cursor is on a link, you will edit the link. Try it with the
      previous links
 
+** TODO Some simple Org markup elements [0/4]
+   Org mode offers a number of markup Elements ([[info:org#Emphasis and Monospace][q.v. this info page]]).
+   The marking up of text is especially useful when we will export
+   our documents to other formats like PDF, HTML, OpenOffice, etc.
+   - [ ] test it by writing some bold and italic text. You will note
+     that in this emacs configuration you will get two stars when you
+     type a star (multiplication sign) after an empty space. This is
+     in expectation that you want to write bold text. They behave the
+     same as parentheses.
+     - *bold text*
+     - /italics/
+     - =verbatim=,   =*this is not bold*=
+     - _underlined_
+     - +ugly strike-through+
+   - [ ] *You can write text that contains
+     a line break*, but usually this kind of markup is for shorter
+     texts, and it maybe that the Emacs font setting will fail to
+     format the text correctly.
+   - [ ] You can wrap a piece of text into markers by using the normal
+     Emacs way of selecting a region and then hitting one of the markup
+     symbols. E.g. for making parts of the following text bold, use
+     "<C-SPACE>" at the beginning and the go with the cursor to the
+     end (the region will be highlighted). Then hit "*".
+     - here: wrap this text in bold
+   - [ ] A comment in Org is written by using a '#' at the beginning of a line
+     (there may just be spaces before it). Example:
+     # a comment
+     When an org document is exported, comments are ignored. So, like in
+     programming, comments are a nice way to add information to a document
+     without their showing up in the final product.
+
+** Org blocks
 * Org mode Task and agenda system
 ** TODO Keywords for Task states [0/2]
    :LOGBOOK:
@@ -280,6 +370,18 @@
    - [ ] add a deadline to the same task by using the keycombo "C-c
      C-d" (org-deadline). Take note that as with the scheduling, now
      there is a "DEADLINE" keyword with timestamp below the task's headline.
+   - [ ] you can create repeating taks by adding a modifier to a time stamp like
+     in these exapmples
+     - [2020-07-10 Fri +7d]
+     - [2020-07-10 Fri +2w]
+     Go to one of the tasks in this file and schedule it or give it a
+     deadline ("C-c C-s" or "C-c C-d").  Then add a repeater modifier
+     like in the examples above.
+     When you now resolve the task ("C-c C-t" and then chose an end-state like DONE),
+     you will see that the taks is launched again and the timestamp is shifted
+     by the repeater interval.
+
+     You can read more about timestamps in [[info:org#Timestamps][info:org#Timestamps]]
 
 ** TODO Changing time stamps [0/5]
    Org uses time stamps in many locations. You saw
@@ -347,8 +449,9 @@
      Emacs undo command (mapped to multiple key, e.g. "C-_"), the change
      will be reverted in the agenda as well as in the Org file.
    - [ ] use "g" to rebuild the view (the overlays vanish)
-   - This is the typical workflow you will do in the morning and
-     at the end of a day. You schedule the tasks you want to do on the
-     current day to "today" and work on them. In the evening, you can
-     decide to reschedule open tasks to some other day.
+   - This is the typical workflow you will do in the morning and at
+     the end of a day. In the morning, you schedule the tasks you want
+     to do on the current day to "today" and work on them. In the
+     evening, you can decide to reschedule open tasks to some other
+     day.
 
