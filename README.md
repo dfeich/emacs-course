@@ -1,42 +1,22 @@
 
 # Table of Contents
 
-1.  [An Emacs Course](#orgcbc4fc7)
-    1.  [Setup](#orgc0a47fd)
-    2.  [Introduction](#org55b2ef5)
-    3.  [Planning of learning stages](#orge773707)
+1.  [An Emacs Course](#orgf6db9ea)
+    1.  [Introduction](#org77b6ef9)
+    2.  [Setup](#org93d2a7a)
+        1.  [Install the configuration and the course](#orgfbfa272)
+        2.  [Start Emacs and let it install the required Emacs packages](#org73ff809)
+        3.  [Start the course](#org4efe6f6)
+    3.  [Planning of learning stages](#orge5e16ba)
 
 
 
-<a id="orgcbc4fc7"></a>
+<a id="orgf6db9ea"></a>
 
 # An Emacs Course
 
 
-<a id="orgc0a47fd"></a>
-
-## Setup
-
-The Emacs configuration for the course you can find at
-<https://github.com/dfeich/emacs-course-and-config>. 
-It is best that you fork that repository and then clone your
-forked copy to your (or a test user's) account's `~/emacs.d` directory on your
-machine.
-
-This repository contains the course in the form of Org mode task files.
-It should be checked out into the `~/Documents` folder of your account.
-The emacs configuration for the course contains settings that expect to
-find the files under `~/Documents/orgcourse`. If you check out to another
-location, you need to adapt the configuration.
-
-When you start Emacs with the new configuration for the first time, it
-will download all the missing packages from GNU, MELPA, and Org. This
-may take some minutes.
-
-I use Emacs version 26.3 and Org version 9.x for this course.
-
-
-<a id="org55b2ef5"></a>
+<a id="org77b6ef9"></a>
 
 ## Introduction
 
@@ -83,7 +63,77 @@ So many people have contributed to this products and I feel indebted
 to all of them.
 
 
-<a id="orge773707"></a>
+<a id="org93d2a7a"></a>
+
+## Setup
+
+
+<a id="orgfbfa272"></a>
+
+### Install the configuration and the course
+
+The Emacs configuration for the course you can find at
+<https://github.com/dfeich/emacs-course-and-config>. 
+It is best that you fork that repository and then clone your
+forked copy to your (or a test user's) account's `~/emacs.d` directory on your
+machine.
+
+    git clone git@github.com:dfeich/emacs-course-and-config.git ~/.emacs.d
+    
+    # or if you made a fork
+    
+    git clone git@github.com:<YOUR-GITNAME>/emacs-course-and-config.git ~/.emacs.d
+
+This repository contains the course in the form of Org mode task files.
+It should be checked out into the `~/Documents/orgcourse` folder of your account.
+The emacs configuration for the course contains settings that expect to
+find the files under that location.
+
+    git clone git@github.com:dfeich/emacs-course.git ~/Documents/orgcourse
+
+If you check out to another location, you need to adapt the
+definition in the Emacs configuration.
+
+When you start Emacs with the new configuration for the first time, it
+will download all the missing packages from GNU, MELPA, and Org. This
+may take some minutes.
+
+I use Emacs version 26.3 and Org version 9.x for this course.
+
+
+<a id="org73ff809"></a>
+
+### Start Emacs and let it install the required Emacs packages
+
+When you start Emacs with the new configuration, it will download
+the packages that are defined in the config. It may also have to
+compile some extensions and pull in some OS packages (e.g. for the
+PDF integration). If Emacs stops with an error message, this does
+not necessarily mean that there is a big problem. Close it either
+using your pointer or hit the CTRL-x CTRL-c key combination. Launch
+it again and look whether it gets further. Since some downloaded
+packages are replacing older versions of existing packages, it can
+sometimes happen that depending on your current config Emacs ends
+up in a state where the old package and the new package
+conflict. Because what you are actually doing is **live-patching
+it**! Emacs mostly deals very well with your exchanging its
+cogwheels while its running, but for some more brutal changes it
+may need some help.
+
+If it fails repeatedly without progressing further then please
+file an issue in this tracker, and I will try to help.
+
+
+<a id="org4efe6f6"></a>
+
+### Start the course
+
+Once you have everything installed, start the first stage by typing
+
+    emacs ~/Documents/orgcourse/agenda/course01-basics.org
+
+
+<a id="orge5e16ba"></a>
 
 ## Planning of learning stages
 
