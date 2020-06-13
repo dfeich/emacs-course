@@ -1,22 +1,25 @@
 
 # Table of Contents
 
-1.  [An Emacs Course](#orgf6db9ea)
-    1.  [Introduction](#org77b6ef9)
-    2.  [Setup](#org93d2a7a)
-        1.  [Install the configuration and the course](#orgfbfa272)
-        2.  [Start Emacs and let it install the required Emacs packages](#org73ff809)
-        3.  [Start the course](#org4efe6f6)
-    3.  [Planning of learning stages](#orge5e16ba)
+1.  [An Emacs Course](#org3f61ba8)
+    1.  [Introduction](#org1daedb3)
+    2.  [Setup](#org2a93bb7)
+        1.  [Install the configuration and the course](#org3e706f1)
+        2.  [Start Emacs and let it install the required Emacs packages](#org0d30e1a)
+    3.  [Start the course](#orgd1e30bc)
+        1.  [a short word on the notation of key commands](#orgb647fa7)
+        2.  [Activate a theme for better readability](#orgd5e11d3)
+        3.  [Starting the lessons](#orgbf37b93)
+    4.  [Planning of learning stages](#orgd74f838)
 
 
 
-<a id="orgf6db9ea"></a>
+<a id="org3f61ba8"></a>
 
 # An Emacs Course
 
 
-<a id="org77b6ef9"></a>
+<a id="org1daedb3"></a>
 
 ## Introduction
 
@@ -63,12 +66,12 @@ So many people have contributed to this products and I feel indebted
 to all of them.
 
 
-<a id="org93d2a7a"></a>
+<a id="org2a93bb7"></a>
 
 ## Setup
 
 
-<a id="orgfbfa272"></a>
+<a id="org3e706f1"></a>
 
 ### Install the configuration and the course
 
@@ -101,39 +104,111 @@ may take some minutes.
 I use Emacs version 26.3 and Org version 9.x for this course.
 
 
-<a id="org73ff809"></a>
+<a id="org0d30e1a"></a>
 
 ### Start Emacs and let it install the required Emacs packages
 
 When you start Emacs with the new configuration, it will download
 the packages that are defined in the config. It may also have to
 compile some extensions and pull in some OS packages (e.g. for the
-PDF integration). If Emacs stops with an error message, this does
-not necessarily mean that there is a big problem. Close it either
-using your pointer or hit the CTRL-x CTRL-c key combination. Launch
-it again and look whether it gets further. Since some downloaded
-packages are replacing older versions of existing packages, it can
-sometimes happen that depending on your current config Emacs ends
-up in a state where the old package and the new package
-conflict. Because what you are actually doing is **live-patching
-it**! Emacs mostly deals very well with your exchanging its
-cogwheels while its running, but for some more brutal changes it
-may need some help.
+PDF integration).
+
+Packages ar pulled down from the [GNU ELPA](https://elpa.gnu.org/), [MELPA](https://melpa.org/#/), and [Org](https://orgmode.org/)
+repositories. GNU ELPA has recently changed its gpg keys, so you
+may need to run the following command in order to update your
+gpg security configuration (q.v. [this nice article](https://metaredux.com/posts/2019/12/09/dealing-with-expired-elpa-gpg-keys.html))
+
+    gpg --homedir ~/.emacs.d/elpa/gnupg --receive-keys 066DAFCB81E42C40
+
+If Emacs stops with an error message, it does not necessarily
+mean that there is a critical problem. Close Emacs either using your
+mouse pointer or hit the `CTRL-x CTRL-c` key combination. Launch it
+again and look whether it is able to progress further. Since some
+downloaded packages are replacing older versions of existing
+packages, it can sometimes happen that depending on your current
+config, Emacs ends up in a state where the old package and the new
+package conflict. Updating packages like we do it here, actually
+means that we are **live-patching Emacs**. Usually Emacs deals
+admirably well with this, since the largest part of its
+functionality is written in LISP. But exchanging cogwheels while
+the motor is running can sometimes lead to problems (we will learn
+in some later lesson about package management how to avoid this).
 
 If it fails repeatedly without progressing further then please
 file an issue in this tracker, and I will try to help.
 
 
-<a id="org4efe6f6"></a>
+<a id="orgd1e30bc"></a>
 
-### Start the course
+## Start the course
 
 Once you have everything installed, start the first stage by typing
 
     emacs ~/Documents/orgcourse/agenda/course01-basics.org
 
 
-<a id="orge5e16ba"></a>
+<a id="orgb647fa7"></a>
+
+### a short word on the notation of key commands
+
+Emacs is operated through control key combinations and all Emacs
+documentation uses the following important notation convention for
+the keystrokes:
+
+-   **"C-f":** this means hit the `CTRL` key together with the `f` key. The leading
+    key in front of the dash always refers to `CTRL`
+-   **"M-f":** M refers to the `META` key, which on Linux/MS-Windows is
+    the `ALT` key (On Macs this can be the `Option` or `Command`
+    key). So, `M-f` means press the `ALT` key together with the `f` key
+-   **"S-g":** `S` is short for the `SHIFT` key, so this meand press `SHIFT` and `g`
+    together
+-   **"M-S-;":** this means press the `META`, `SHIFT`, and `;` keys together.
+
+Often commands consist of a key combination like
+
+-   **"C-h e":** first press `CTRL` + `h`, then press `e`
+-   **"C-c C-c":** press `CTRL` + `c` twice
+
+
+<a id="orgd5e11d3"></a>
+
+### Activate a theme for better readability
+
+The file you are viewing is written in Org mode which is a
+sophisticated markup mode. Here, and also in other parts of Emacs
+it is immensely helpful to use a theme that also visually marks up
+the different text elements. The Emacs configuration for this
+course has installed [Fabrice Niessen's Leuven theme](https://github.com/fniessen/emacs-leuven-theme), which is my
+own preferred light theme (you can naturally install others later).
+
+**The theme still needs to be activated.** Use your mouse to select
+within the `Options` menu on the top of your Emacs window:
+`Customize Emacs -> Custom Themes`. On the displayed page with themes,
+select the `leuven` theme (not `leuven-dark`) and use the `Save Theme Settings`
+button to save the configuration. Then you press `q` to quit this buffer,
+and you will be back in our course's first lessons file.
+
+
+<a id="orgbf37b93"></a>
+
+### Starting the lessons
+
+You should now see an Emacs session that looks like this
+
+![img](README-att/course-start.png)
+
+Navigate to the first headline (headlines are marked by one or multiple
+leading stars) and unfold it by using the `<TAB>` key while you are on it.
+You can press `<TAB>` multiple times, and it will cycle between the different
+folding states.
+
+When you open the **Course basics** you will see the following and you are
+ready to go
+
+![img](README-att/course-start2.png)
+
+
+<a id="orgd74f838"></a>
 
 ## Planning of learning stages
 
@@ -147,20 +222,27 @@ documents for the lessons. The configuration will grow with the
 material covered in the lessons - and I may leave holes for this
 first round, since the coworkers know some items already.
 
+I will try to teach the most important standard Emacs commands, but
+a lot of material will focus on **using the benefits of modern packages**.
+The most basic standard commands are important if one ever finds oneself
+having to use an unconfigured Emacs. But the real convenience and power
+is attained through the add-ons that the community has created over
+the years.
+
 1.  Basic Emacs and Org mode
     -   this is a big first stage, but I think that Org mode must be introduced
         early, because it is one of the principal features that immediately
         offers big benefits to new users
-    -   minimal emacs lisp knowledge, just enough to understand the config
-        in a rudimentary way and lose the fear of parentheses
     -   basic editing
     -   file management (dired)
     -   org mode as a basic task manager (org agenda, basic org file features)
     -   easier user interface with helm, smex, ido
     -   emacs package management
     -   how to use the info and help systems
-    -   emacs daemon
+    -   minimal emacs lisp knowledge, just enough to understand the config
+        in a rudimentary way and lose the fear of parentheses
 2.  Emacs for higher productivity, programming and system management
+    -   emacs daemon
     -   Magit - is there a better Git interface then this?
     -   Tramp (a killer feaure for users working on remote hosts. Loved by
         system administrators and developers)

@@ -1,5 +1,5 @@
 #+TODO: TODO(t!) WAIT(W@/!) | DONE(d!) CANCELED(c@) DELEGATED-AWAY(G@/!)
-#+TODO: BUG(b) | FIXED(f) WONTFIX(w)
+#+TODO: BUG(b!) | FIXED(f!) WONTFIX(w!)
 #+TITLE: Emacs Course 01
 
 #+AUTHOR: Derek Feichtinger
@@ -10,6 +10,33 @@
 # (org-super-agenda)
 #+PROPERTY: agenda-group emacs_course
 
+# For starting the course, move your cursor to the line reading
+# "Course Basics" and use the <TAB> key to unfold the contents
+# of that headline.
+
+* Course basics
+  This file is written in Org mode, a very powerful outline and
+  productivity mode of Emacs. For starting the course you just
+  need to remember that you can unfold/fold the headlines by
+  positioning your cursor on them and then use the <TAB> key.
+  Each time you hit <TAB> is cycles through one of three folding
+  states.
+
+  The sections below each headline contain subsections (lines starting
+  with two stars - you can unfold them as well). The subjections
+  contain lists with exercises and often feature checkboxes. Go
+  through the exercises, and each time you finished an item, you can
+  position your cursor on the respective checkbox and type "C-c C-c"
+  (CTRL-c CTRL-c) to mark it done. The checkbox will be checked, and
+  Org mode will magically adapt the counter at the top. Try it with
+  the following list
+
+ - My list [0/2]
+   - [ ] I learned this
+   - [ ] I learned that
+
+ Ok, now proceed to the first section below, and hack away...
+  
 * Basic Emacs usage
   Emacs contains an excellent tutorial. You can reach it by using
   the keycombo "C-h t". The following exercises only contain a subset
@@ -19,11 +46,12 @@
    - State "TODO"       from              [2020-06-11 Thu 23:07]
    :END:
    - [ ] the standard way of loading a file uses the keycombo "C-x
-     C-f" (ido-find-file). 
-     - In this emacs configuration we have configured
+     C-f" (find-file). You will then be prompted for the file.
+     - In this emacs configuration I have configured
        the *ido* system. This offers you a nice way of selecting the file
-       with some fuzzy matching (e.g. when you enter "cb" it will show you
-       "course-basics" among the hits, since it matches the initials)
+       from candidates based on what you type. It supports some
+       some fuzzy matching logic (e.g. when you enter "cb" it will show you
+       "course-basics" among the hits, since "cb" matches the initials)
      - when you enter "//" it will jump to the root file system.
      - when you enter "~/" it will jump to your home directory
      - if you enter the name of a nonexistent file "[nomatch]" will be displayes,
@@ -73,7 +101,9 @@
      close the window in which the cursor is, by using the keycombo
      "C-x 0" (delete-window)
 
-** TODO selecting, copying and pasting [0/6]
+   You can read more about the windows management in [[info:emacs#Windows][info:emacs#Windows]]
+
+** TODO selecting, copying, and pasting [0/6]
    Emacs predates the time where the /Cut, Copy & Paste/ expressions
    were coined, and the old command names still are used.
    - [ ] You can select text by placing the cursor on the starting
@@ -318,7 +348,7 @@
      without their showing up in the final product.
 
 ** Org blocks
-* Org mode Task and agenda system
+* Org mode task and agenda System
 ** TODO Keywords for Task states [0/2]
    :LOGBOOK:
    - State "TODO"       from              [2020-06-11 Thu 16:14]
@@ -442,12 +472,13 @@
      - <RETURN> :: switch to task buffer in this window 
 
 ** TODO Modify Scheduled times from the agenda view [0/2]
-   - [ ] In the agenda view, place the cursor on a task and
-     use <S-righ> to shift the scheduled date forward. An information
-     about the shifting will be shown in an overlay. The respective
-     time stamp in the org file will be changed. If you use the
-     Emacs undo command (mapped to multiple key, e.g. "C-_"), the change
-     will be reverted in the agenda as well as in the Org file.
+   - [ ] In the agenda view, place the cursor on a task and use
+     <S-righ> to shift the scheduled date forward. An information
+     about the shifting will be shown in a so called overlay. The
+     respective time stamp in the org file will be changed as well. If
+     you use the Emacs undo command ("C-_", it is also mapped to other
+     keys), the change will be reverted in the agenda as well as in
+     the Org file.
    - [ ] use "g" to rebuild the view (the overlays vanish)
    - This is the typical workflow you will do in the morning and at
      the end of a day. In the morning, you schedule the tasks you want
