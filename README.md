@@ -1,25 +1,25 @@
 
 # Table of Contents
 
-1.  [An Emacs Course](#org3f61ba8)
-    1.  [Introduction](#org1daedb3)
-    2.  [Setup](#org2a93bb7)
-        1.  [Install the configuration and the course](#org3e706f1)
-        2.  [Start Emacs and let it install the required Emacs packages](#org0d30e1a)
-    3.  [Start the course](#orgd1e30bc)
-        1.  [a short word on the notation of key commands](#orgb647fa7)
-        2.  [Activate a theme for better readability](#orgd5e11d3)
-        3.  [Starting the lessons](#orgbf37b93)
-    4.  [Planning of learning stages](#orgd74f838)
+1.  [An Emacs Course](#orgabecb1e)
+    1.  [Introduction](#org6af2d8e)
+    2.  [Setup](#org3c238b3)
+        1.  [Install the configuration and the course](#org88b343b)
+        2.  [Start Emacs and let it install the required Emacs packages](#org904d461)
+    3.  [Start the course](#org32dcc04)
+        1.  [a short word on the notation of key commands](#org17e3e21)
+        2.  [Activate a theme for better readability](#org6370a5f)
+        3.  [Starting the lessons](#org7a114e6)
+    4.  [Planning of learning stages](#org45b7923)
 
 
 
-<a id="org3f61ba8"></a>
+<a id="orgabecb1e"></a>
 
 # An Emacs Course
 
 
-<a id="org1daedb3"></a>
+<a id="org6af2d8e"></a>
 
 ## Introduction
 
@@ -41,20 +41,20 @@ the C and scripting languages I knew - something that reminded me of
 the joy of playing with the HP Scientific Calculators many year ago.
 
 For a long time I entertained the hope of passing on the
-knowhow. But it's not so easy, since the thing which makes Emacs so
+know-how. But it's not so easy, since the thing which makes Emacs so
 great and efficient - its staggering flexibility - also makes it
 tough to teach. Most long time users end up with configurations that
 fit them like a glove. But other users will be very opinionated in regards
 to the packages and optimizations that are used. There's a good number
-of excellent meta-distributions around, like SpaceMacs or Doom. They
-may be great for many users. I myself always stayed with my hand-written
+of excellent meta-distributions around, like [Spacemacs](https://www.spacemacs.org/) or [Doom](https://github.com/hlissner/doom-emacs). They
+are great and will fit many users. I myself always stayed with my hand-written
 config that I constantly adapted to more modern styles (which prevented
-me from ever declaring the dreaded *Dot Emacs Bankruptcy*)
+me from ever declaring the dreaded [Dot Emacs Bankruptcy](https://www.emacswiki.org/emacs/DotEmacsBankruptcy)).
 
 I now decided to make a first test run with a course that is based on
 basic configuration of Emacs. I will start with an initial configuration
 that already has a number of nice packages that will wet the appetite.
-But the idea is not that learners shall adpot these exact configurations.
+But the idea is not that learners shall adopt these exact configurations.
 They should learn how the configuration works and how they can adapt
 it. So, they by themselves will be able to make an informed decision about
 whether they want to adopt one of the meta distributions, change the
@@ -66,12 +66,12 @@ So many people have contributed to this products and I feel indebted
 to all of them.
 
 
-<a id="org2a93bb7"></a>
+<a id="org3c238b3"></a>
 
 ## Setup
 
 
-<a id="org3e706f1"></a>
+<a id="org88b343b"></a>
 
 ### Install the configuration and the course
 
@@ -89,7 +89,7 @@ machine.
 
 This repository contains the course in the form of Org mode task files.
 It should be checked out into the `~/Documents/orgcourse` folder of your account.
-The emacs configuration for the course contains settings that expect to
+The Emacs configuration for the course contains settings that expect to
 find the files under that location.
 
     git clone git@github.com:dfeich/emacs-course.git ~/Documents/orgcourse
@@ -104,7 +104,7 @@ may take some minutes.
 I use Emacs version 26.3 and Org version 9.x for this course.
 
 
-<a id="org0d30e1a"></a>
+<a id="org904d461"></a>
 
 ### Start Emacs and let it install the required Emacs packages
 
@@ -113,7 +113,7 @@ the packages that are defined in the config. It may also have to
 compile some extensions and pull in some OS packages (e.g. for the
 PDF integration).
 
-Packages ar pulled down from the [GNU ELPA](https://elpa.gnu.org/), [MELPA](https://melpa.org/#/), and [Org](https://orgmode.org/)
+Packages are pulled down from the [GNU ELPA](https://elpa.gnu.org/), [MELPA](https://melpa.org/#/), and [Org](https://orgmode.org/)
 repositories. GNU ELPA has recently changed its gpg keys, so you
 may need to run the following command in order to update your
 gpg security configuration (q.v. [this nice article](https://metaredux.com/posts/2019/12/09/dealing-with-expired-elpa-gpg-keys.html))
@@ -138,7 +138,7 @@ If it fails repeatedly without progressing further then please
 file an issue in this tracker, and I will try to help.
 
 
-<a id="orgd1e30bc"></a>
+<a id="org32dcc04"></a>
 
 ## Start the course
 
@@ -147,7 +147,7 @@ Once you have everything installed, start the first stage by typing
     emacs ~/Documents/orgcourse/agenda/course01-basics.org
 
 
-<a id="orgb647fa7"></a>
+<a id="org17e3e21"></a>
 
 ### a short word on the notation of key commands
 
@@ -160,7 +160,7 @@ the keystrokes:
 -   **"M-f":** M refers to the `META` key, which on Linux/MS-Windows is
     the `ALT` key (On Macs this can be the `Option` or `Command`
     key). So, `M-f` means press the `ALT` key together with the `f` key
--   **"S-g":** `S` is short for the `SHIFT` key, so this meand press `SHIFT` and `g`
+-   **"S-g":** `S` is short for the `SHIFT` key, so this means press `SHIFT` and `g`
     together
 -   **"M-S-;":** this means press the `META`, `SHIFT`, and `;` keys together.
 
@@ -170,7 +170,7 @@ Often commands consist of a key combination like
 -   **"C-c C-c":** press `CTRL` + `c` twice
 
 
-<a id="orgd5e11d3"></a>
+<a id="org6370a5f"></a>
 
 ### Activate a theme for better readability
 
@@ -189,7 +189,7 @@ button to save the configuration. Then you press `q` to quit this buffer,
 and you will be back in our course's first lessons file.
 
 
-<a id="orgbf37b93"></a>
+<a id="org7a114e6"></a>
 
 ### Starting the lessons
 
@@ -208,7 +208,7 @@ ready to go
 ![img](README-att/course-start2.png)
 
 
-<a id="orgd74f838"></a>
+<a id="org45b7923"></a>
 
 ## Planning of learning stages
 
@@ -229,52 +229,61 @@ having to use an unconfigured Emacs. But the real convenience and power
 is attained through the add-ons that the community has created over
 the years.
 
+This is a **work in progress.** The parts which I have already covered, I mark
+by filled checkboxes.
+
 1.  Basic Emacs and Org mode
     -   this is a big first stage, but I think that Org mode must be introduced
         early, because it is one of the principal features that immediately
         offers big benefits to new users
-    -   basic editing
-    -   file management (dired)
-    -   org mode as a basic task manager (org agenda, basic org file features)
-    -   easier user interface with helm, smex, ido
-    -   emacs package management
-    -   how to use the info and help systems
-    -   minimal emacs lisp knowledge, just enough to understand the config
+    -   basic editor features
+        -   [X] file loading, saving, save as
+        -   [X] searching for strings and regexps
+    -   file management
+        -   [X] efficient file navigation with helm and ido
+        -   [ ] dired file manager - basic commands
+    -   [X] org mode as a basic task manager (org agenda, basic org file features)
+    -   [X] executing Emacs commands
+        -   [X] using smex or helm to more easily execute commands
+    -   [ ] Emacs package management
+    -   [X] how to use the info and help systems
+    -   [ ] minimal Emacs lisp knowledge, just enough to understand the config
         in a rudimentary way and lose the fear of parentheses
 2.  Emacs for higher productivity, programming and system management
-    -   emacs daemon
-    -   Magit - is there a better Git interface then this?
-    -   Tramp (a killer feaure for users working on remote hosts. Loved by
+    -   [ ] Emacs daemon
+    -   [ ] Magit - is there a better Git interface than this project from Jonas Bernoulli?
+    -   [ ] Tramp (a killer feature for users working on remote hosts. Loved by
         system administrators and developers)
-    -   Org capture - create tasks and back-links from everywhere
-    -   gpg for encrypting files
-    -   dired revisited
-    -   command execution from Emacs
-    -   a look at some of the programming modes
-    -   lsp-mode (a modern IDE interface in Emacs)
-    -   linting (Syntax checking with flycheck)
-3.  Authoring LaTeX, HTML, and other documents with Org mode
-    -   write scientific documents containing math, preview the math
-    -   do inline calculations with Calc
-    -   include graphics and screenshots
-    -   simple first steps with Org Babel to execute code and
+    -   [ ] Org capture - create tasks and back-links from everywhere
+    -   [ ] Emacs Macros
+    -   [ ] do inline calculations with Calc
+    -   [ ] dired revisited
+    -   [ ] shell command execution from Emacs
+    -   [ ] a look at some of the programming modes
+    -   [ ] lsp-mode (a modern IDE interface in Emacs)
+    -   [ ] linting (Syntax checking with flycheck)
+    -   [ ] gpg for encrypting files
+3.  Authoring Latex, HTML, and other documents with Org mode
+    -   [ ] write scientific documents containing math, preview the math
+    -   [ ] include graphics and screenshots
+    -   [ ] simple first steps with Org Babel to execute code and
         create graphics
 4.  Org Babel for real
-5.  Fast Presentations with LaTeX beamer through Org
+5.  Fast Presentations with Latex beamer through Org
 6.  Integrating with your browser
-    -   Use emacs to edit forms in browsers like Firefox or Chrome
+    -   [ ] Use Emacs to edit forms in browsers like Firefox or Chrome
         (through the daemon)
-    -   org-protocol: transfer information from the browser to Emacs,
-        e.g. mark some text in the browser and get it into emacs, or
+    -   [ ] org-protocol: transfer information from the browser to Emacs,
+        e.g. mark some text in the browser and get it into Emacs, or
         convert a web page to org mode and find it ready in your buffer!
 7.  Emacs and email
-    -   mu4e and mbsync to manage email
-    -   integrate email with org mode task management, making
+    -   [ ] mu4e and mbsync to manage email
+    -   [ ] integrate email with org mode task management, making
         efficient use of org capture and email links in workflows.
 8.  Emacs for science
-    -   helm-bitex
-    -   org-ref
-    -   org-babel
-    -   org-noter and PDF management
-    -   jupyter (maybe)
+    -   [ ] helm-bibtex
+    -   [ ] org-ref
+    -   [ ] org-babel
+    -   [ ] org-noter and PDF management
+    -   [ ] jupyter (maybe)
 
