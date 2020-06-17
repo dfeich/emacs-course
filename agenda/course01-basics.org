@@ -16,20 +16,20 @@
 
 * Course basics
   This file is written in Org mode, a very powerful outline and
-  productivity mode of Emacs. For starting the course you just
-  need to remember that you can unfold/fold the headlines by
-  positioning your cursor on them and then use the <TAB> key.
-  Each time you hit <TAB> is cycles through one of three folding
+  productivity mode of Emacs. For starting the course you just need to
+  remember that you can unfold/fold the headlines (lines starting with
+  a "*") by positioning your cursor on them and then use the <TAB>
+  key. Each time you hit <TAB> it cycles through one of three folding
   states.
 
-  The sections below each headline contain subsections (lines starting
-  with two stars - you can unfold them as well). The subsections
-  contain lists with exercises and often feature checkboxes. Go
-  through the exercises, and each time you finished an item, you can
-  position your cursor on the respective checkbox and type "C-c C-c"
-  (CTRL-c CTRL-c) to mark it done. The checkbox will be checked, and
-  Org mode will magically adapt the counter at the top. Try it with
-  the following list
+  The sections below each headline contain subsections with their own
+  headlines (lines starting with two stars - you can unfold them as
+  well). The subsections contain lists with exercises and often
+  feature checkboxes. Go through the exercises, and each time you
+  finish an item, you can position your cursor on the respective
+  checkbox and type "C-c C-c" (CTRL-c CTRL-c) to mark it done. The
+  checkbox will be checked, and Org mode will magically adapt the
+  counter at the top. Try it with the following list
 
  - My list [0/2]
    - [ ] I learned this
@@ -80,24 +80,25 @@
    window manager within your Emacs session may be running.
 
    This is a typical source of confusion for new users, because the
-   term "window" is normally used for the main windows in which your
-   graphical window manager (like Gnome or KDE) are running
+   term "window" is normally used for the windows in which your
+   graphical window manager (like Gnome or KDE) is running
    applications. In Emacs these "external" windows are called /frames/.
    So, Emacs is running in one or multiple frames provided by your
    window manager, and each frame may contain multiple Emacs windows
    sharing the frame.
 
-   - [ ] split the current window horizontally in 2 windows. Use
+   - [ ] split the current window horizontally into 2 windows. Use
      the standard key-combo "C-x 2" (split-window-below)
    - [ ] split the window in which you currently are in two vertical
      windows by using the standard key-combo "C-x 3" (split-window-right)
    - [ ] you can switch to another window by using the standard key-combo
-     "C-x o" (other-window)
+     "C-x o" (other-window). Repeat it to jump to the next window.
    - [ ] you can scroll the "other" window by using the standard
      key-combos "<M-PageUp>" and "<M-PageDown>", or alternatively
      "<C-M-v>" and "<C-M-S-v>" (scroll-other-window). This is very
      practical for scrolling the documentation without leaving the
-     current window.
+     current window. It is most useful when you just have two windows
+     open.
    - [ ] to make the current window the only window of the frame,
      you can use the standard key-combo "C-x 1" (delete-other-windows)
    - [ ] split the window again using the commands above. You can
@@ -107,7 +108,89 @@
    You can read more about windows management in Emacs by following
    this link [[info:emacs#Windows][info:emacs#Windows]]
 
-** TODO selecting, copying, and pasting [0/6]
+** TODO Buffers and switching between them [0/3]
+   The text that you see inside of an Emacs window is a view of a /buffer/.
+   Often a buffer is associated with a file that you loaded, but there
+   are also other buffers, e.g. for displaying messages, testing lisp commands,
+   displaying information, etc.
+
+   Usually your Emacs session will host a lot of buffers (I'm often ending up
+   with several hundreds for a long running session), and it's important to
+   know how to switch between them in your windows.
+
+   - [ ] You can switch to another buffer using the standard key-combo
+     "C-c b" (switch-buffer). You will be prompted for the buffer's name.
+     In this config we again connected it to the *ido* completion help, so
+     you will find the familiar selection interface
+   - One of the most flexible ways to switch to another buffer is again by
+     invoking the respective helm function that is available in this configuration.
+     Use "<f5> b" (helm-buffers-list) to get the helm selection interface that
+     you already encountered in the above section for [[*Loading and saving files][Loading and saving files]].
+   - [ ] The standard key-combo "C-x C-b" (list-buffers) will show you
+     a window with a list of all the current buffers. That is
+     sometimes helpful to get an overview. In the course's
+     configuration I supercharged it by mapping the key to the
+     standard [[help:ibuffer-list-buffers][ibuffer-list-buffers]] command. That mode gives you a
+     nicer buffer overview that also can be customized later.
+     - You can jump to a buffer by just using <RETURN> when your cursor is on
+       it.
+   - [ ] One can also switch to the next/previous buffer using the
+     standard key-combos "C-x <right>" (next-buffer) and "C-x <left>"
+     (previous-buffer). Since I like to do that a lot, they are mapped
+     in this cofiguration to "<C-prior>" (this is <C-PageUp>) and
+     "<C-next>" (this is <C-PageDown>). These functions allow you to
+     switch back to the previous buffers you visited, and forward
+     again.
+   - You can read about buffers in the [[info:emacs#Buffers][info:emacs#Buffers]] page.
+
+** TODO Moving inside of a buffer
+   Emacs provides a lot of ways to move within a buffer.
+   I will just list a few of the most important ones
+
+   These are all standard key-combos
+   - "M-<" (beg-of-buffer) :: Jumps to the beginning of the buffer
+   - "M->" (end-of-buffer) :: Jumps to the end of the buffer
+   - "C-a" (move-beginning-of-line) :: move to beginning of line
+   - "C-e" (move-end-of-line) :: move to the end of the line
+   - "M-g M-g" (goto-line) :: go to a specific line number
+   - "M-g M-c" (goto-char) :: go to a specific character number within
+     the file
+
+   Apart from these commands you can naturally use PageUp, PageDown to
+   move fast. A lot of people also like to use the search functions
+   that we'll encounter a bit later to navigate over bigger distances
+   in the buffer.
+
+** TODO Explainer: Major modes and minor modes
+   :LOGBOOK:
+   - State "TODO"       from              [2020-06-17 Wed 23:05]
+   :END:
+   - "Modes" govern the way how emacs deals with a buffer you are
+     viewing, and which interface it offers to you for interacting
+     with it. E.g. A programming mode may highlight the keywords of a
+     programming language and provide functions to easily jump between
+     functions. Org mode, which is the major mode for this current buffer,
+     provides functions to efficiently organize tasks and more, and it
+     is responsible for the highlighting of the headlines, etc.
+   - *Major Modes:* There can only be a single major mode active for a buffer
+     at any time. Major modes capture the main functionalities for working
+     with specific buffer types. E.g. there is c-mode, python-mode, text-mode,
+     web-mode, etc. The current buffer is currently displayed under Org-mode,
+     which is also a major-mode.
+   - *Minor Modes:* Minor overlay the major-mode with additional
+     functionality. Usually they focus on a small and well defined
+     add-on functionality. They may provide extra key-bindings for
+     inserting templates, or they may offer in-buffer
+     completion. E.g. the completion you get in this and other buffers
+     while you are typing (it appears when you stop for a moment), is
+     realized by the /company/ minor mode.
+
+   The information about the active major and minor modes is
+   displayed in the mode line at the bottom of an Emacs window. You
+   can hover with your mouse above the different parts of the mode line
+   to get information about the elements.
+
+** TODO selecting, copying, and pasting text [0/6]
    Emacs predates the time where the /Cut, Copy & Paste/ expressions
    were coined, and the old command names still are used.
    - [ ] You can select text by placing the cursor on the starting
@@ -116,6 +199,9 @@
      mark/. When you now move the cursor you will see that the region
      between the mark and your current position will be
      highlighted. This selected text is called /the region/.
+     - you can cancel the selection by using the standard key-combo
+       "C-g" (keyboard-quit). Btw: "C-g" is used for cancelling all kinds
+       of interactions in Emacs.
    - [ ] Cutting text is called /killing text/. You can kill the text
      by using the standard key-combo "c-k" (kill-line, or similar
      commands depending on the current mode). Try to kill this sentence.
@@ -227,10 +313,11 @@
 
 ** TODO What does this key or combo do?
 
-   - [ ] To find out what a certain key can do in the current
-     context, use the standard key-combo "C-h k". You are then prompted
-     to enter the combo. Try to find out what is mapped to
-     the "C-c C-t" combination. I.e. you have to type "C-h k C-c C-t"
+   - [ ] To find out what a certain key can do in the current context,
+     use the standard key-combo "C-h k". You are then prompted to
+     enter the combo you're interesting in. Try to find out what is
+     mapped to the "C-c C-t" combination. I.e. you have to type "C-h k
+     C-c C-t".
 
 ** TODO Get help on the current mode [0/2]
    - [ ] Invoke the help for the current buffer's major mode by
