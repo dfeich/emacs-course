@@ -39,16 +39,16 @@
   
 * Basic Emacs usage
   Emacs contains an excellent tutorial. You can reach it by using
-  the key-combo "C-h t". The following exercises only contain a subset
+  the standard key-combo "C-h t". The following exercises only contain a subset
   of commands.
 ** TODO Loading and saving files [0/4]
    :LOGBOOK:
    - State "TODO"       from              [2020-06-11 Thu 23:07]
    :END:
-   - [ ] the standard way of loading a file uses the key-combo "C-x
+   - [ ] the basic way of loading a file uses the standard key-combo "C-x
      C-f" (find-file). You will then be prompted for the file.
      - In this Emacs configuration I have configured
-       the *ido* system. This offers you a nice way of selecting the file
+       the *ido* system. This offers you a nicer way of selecting the file
        from candidates based on what you type. It supports some
        fuzzy matching logic (e.g. when you enter "cb" it will show you
        "course-basics" among the hits, since "cb" matches the initials)
@@ -62,14 +62,16 @@
      (helm-find-files).
      - you can use the arrow keys to move up, down, into and out of directories
      - typing will narrow the candidates down according to your search expression
-       as you type
+       as you type. It supports fuzzy matching, so if you type "cb" it will match
+       "course-basics.org" as well as any file like "cb123.txt".
      - <RETURN> opens the file
      - typing the name of a nonexistent file will offer to create it. If you type
        a nonexistent filename and terminate it by a "/", you will be asked whether
        you want to create that directory.
    - [ ] Save a file buffer after changing it by using the key-combo
      "C-x C-s" (save-buffer)
-   - [ ] Save a buffer under another name by using "C-x C-w" (ido-write-file).
+   - [ ] Save a buffer under another name by using the standard
+     key-combo "C-x C-w" (write-file).
 
 ** TODO Understanding Emacs windows [0/6]
    Emacs is able to divide up its screen space into logical
@@ -86,86 +88,99 @@
    sharing the frame.
 
    - [ ] split the current window horizontally in 2 windows. Use
-     the key-combo "C-x 2" (split-window-below)
+     the standard key-combo "C-x 2" (split-window-below)
    - [ ] split the window in which you currently are in two vertical
-     windows by using the key-combo "C-x 3" (split-window-right)
-   - [ ] you can switch to another window by using the key-combo
+     windows by using the standard key-combo "C-x 3" (split-window-right)
+   - [ ] you can switch to another window by using the standard key-combo
      "C-x o" (other-window)
-   - [ ] you can scroll the "other" window by using "<M-PageUp>" and
-     "<M-PageDown>", or alternatively "<C-M-v>" and "<C-M-S-v>"
-     (scroll-other-window). This is very practical for scrolling the
-     documentation without leaving the current window.
-   - [ ] two make the current window the only window of the frame,
-     you can use the key-combo "C-x 1" (delete-other-windows)
+   - [ ] you can scroll the "other" window by using the standard
+     key-combos "<M-PageUp>" and "<M-PageDown>", or alternatively
+     "<C-M-v>" and "<C-M-S-v>" (scroll-other-window). This is very
+     practical for scrolling the documentation without leaving the
+     current window.
+   - [ ] to make the current window the only window of the frame,
+     you can use the standard key-combo "C-x 1" (delete-other-windows)
    - [ ] split the window again using the commands above. You can
-     close the window in which the cursor is, by using the key-combo
-     "C-x 0" (delete-window)
+     close the window in which the cursor is, by using the standard
+     key-combo "C-x 0" (delete-window)
 
-   You can read more about the windows management in [[info:emacs#Windows][info:emacs#Windows]]
+   You can read more about windows management in Emacs by following
+   this link [[info:emacs#Windows][info:emacs#Windows]]
 
 ** TODO selecting, copying, and pasting [0/6]
    Emacs predates the time where the /Cut, Copy & Paste/ expressions
    were coined, and the old command names still are used.
    - [ ] You can select text by placing the cursor on the starting
-     position and then use the key-combo "C-SPC" (set-mark-command). The
-     position where you do this is called /the mark/. When you now move
-     the cursor you will see that the region between the mark and your current
-     position will be highlighted. This selected text is called /the region/.
+     position and then use the standard key-combo "C-SPC"
+     (set-mark-command). The position where you do this is called /the
+     mark/. When you now move the cursor you will see that the region
+     between the mark and your current position will be
+     highlighted. This selected text is called /the region/.
    - [ ] Cutting text is called /killing text/. You can kill the text
-     by using the key-combo "c-k" (kill-line, or similar commands depending
-     on the current mode). Kill this sentence.
+     by using the standard key-combo "c-k" (kill-line, or similar
+     commands depending on the current mode). Try to kill this sentence.
    - [ ] You can insert/paste the killed text somewhere else by moving
-     your cursor to the new position and using the key-combo "C-y" (org-yank).
-     This action is called /yanking/. Insert your killed text here:
-   - [ ] If you do not want to cut the text, but you just want to copy is,
-     you invoke the key-combo "M-w" (kill-ring-save). This leaves the region
-     as it is, but you can insert it somewhere else with "C-y" as above.
+     your cursor to the new position and using the standard key-combo
+     "C-y" (yank). This action is called /yanking/. Insert your
+     killed text here:
+   - [ ] If you do not want to cut the text, but you just want to copy
+     it, you invoke the standard key-combo "M-w" (kill-ring-save) on
+     the selected region. This leaves the region as it is, but you can
+     insert it somewhere else with "C-y" as above.
    - [ ] When you invoke "C-y" multiple times in a row, the inserted
-     text will be exchanged against an earlier killed text. This way
-     you can go through the history of copied text pieces. The memory
-     where the copied texts are stored is called the "kill-ring"
+     text will be exchanged against earlier killed text snippets. This
+     way you can step through the history of copied text pieces. The
+     memory where the copied texts are stored is called the
+     "kill-ring"
    - [ ] an even simpler way to work with the "kill-ring" is to
      use the respective helm command which in this Emacs config is
-     mapped to "<f5> k" (helm-show-kill-ring). Try it out.
+     mapped to "<f5> k" (helm-show-kill-ring). You will be able to
+     quickly narrow down to the desired snippet from your kill history.
+     Try it out.
      
 ** TODO searching for strings and regular expressions [0/4]
    :LOGBOOK:
    - State "TODO"       from              [2020-06-11 Thu 23:07]
    :END:
-   - [ ] Use the key-combo "C-s" (isearch-forward) to do an incremental
+   - [ ] Use the standard key-combo "C-s" (isearch-forward) to do an incremental
      string search forward. Hitting "C-s" again jumps to the next match.
      <RETURN> exits the search, placing the cursor after the current hit.
      - You can get extensive help on isearch by looking up its help page
-       by "C-h k C-s" (q.v. [[*What does this key or combo do?][What does this key or combo do?]])
-   - [ ] Use the key-combo "C-u C-s" (isearch-forward) to do an incremental
-     regexp search forward.
-   - [ ] The key-combos "C-r" and "C-u C-r" do the same in backwards direction
-   - [ ] One of the best search tools uses the helm framework and is included
-     in this configuration: [[https://github.com/emacsorphanage/helm-swoop][helm-swoop]]. Use "<f5> s" (helm-swoop) to enter a
-     search mode where you see all the hits that match your current search expression
-     as you type.
-     - while you are searching, you can go to the edit mode (look at the top line. The
-       command is listed there, "C-c C-e"). In edit mode you can change all the lines, and
-       then write them back to the buffer.
+       using the help lookup combo for it:
+        "C-h k C-s" (q.v. [[*What does this key or combo do?][What does this key or combo do?]])
+   - [ ] Use the standard key-combo "C-u C-s" (isearch-forward) to do
+     an incremental regexp search forward.
+   - [ ] The standard key-combos "C-r" and "C-u C-r" do the same in
+     backwards direction
+   - [ ] One of the best search tools for Emacs uses the helm
+     framework and is included in this configuration: [[https://github.com/emacsorphanage/helm-swoop][helm-swoop]]. Use
+     "<f5> s" (helm-swoop) to enter a search mode where you see all
+     the hits that match your current search expression as you type.
+     - while you are searching, you can go to the edit mode (look at
+       the window's top line. The command is listed there, "C-c
+       C-e"). In edit mode you can change all the lines, and then
+       write them back to the buffer.
      - If you use [M-i] while searching (also mentioned in the top line), the search
        will go over all open buffers of this Emacs session.
 
 ** TODO Executing Emacs commands and getting information about them [0/4]
    Emacs has a huge number of commands, many of them are not bound to
    key combinations. Such commands can be entered after using the
-   key combo "M-x". In this configuration we have configured the
-   package "smex" which makes the selection of commands much easier.
+   standard key combo "M-x". In this configuration we have configured
+   the package "smex" which makes the selection of commands much
+   easier.
 
-   - [ ] run the command "emacs-version" by using the key-combo "M-x".
-     The fuzzy matching of smex will allow you to enter e.g. the initials
-     "ev", or you can type "emav", or "emacs-ver". <RETURN> selects the
-     current command.
+   - [ ] run the command "emacs-version" by using the key-combo "M-x"
+     and then entering the command. The fuzzy matching of smex will
+     allow you to enter e.g. the initials "ev", or you can type
+     "emav", or "emacs-ver". <RETURN> selects the current command.
    - [ ] if you want to get information about a command in smex, you can
      invoke the help system by using the key-combo "C-h f" (describe-function)
      while being in the smex selection dialog.
-   - [ ] If you want to get information about a function written in the text,
-     you can use the key-combo "C-h f" while the cursor is on the name of a
-     function. Try it with the one on the next line
+   - [ ] If you want to get information about a function written in
+     the text of an Emacs buffer, you can use the same standard
+     key-combo "C-h f" (describe-function) while the cursor is on the
+     name of a function. Try it with the one on the next line
      :                emacs-version
      Emacs will offer you the word under the cursor as the default for looking
      up the respective help page.
@@ -174,22 +189,24 @@
      can invoke the key-combo "<f5> a" (helm-apropos). You can then search
      for Emacs commands, functions, and variables.
      - if your cursor is on a name that matches an Emacs function or variable,
-       it will be already used as the default in the narrowing framework
+       it will be already used as the default command. You should see it already
+       chosen as the current candidate within the helm session.
      - <RETURN> will jump to the respective help page
      - even better, "C-j" will show the help page while staying in helm mode,
        so you can look at multiple commands.
 
 * Emacs help and info systems
-  Emacs is very consistent in its basic key mappings. All basic help
-  functionalities start with the key-combo "C-h"
+  Emacs is very consistent in its basic key mappings (stop laughing -
+  I really am serious). All basic help functionalities start with the
+  standard key-combo "C-h"
 
 ** TODO Using the GNU Info system [0/1]
-   Emacs Documentation is in Info format. Though this is an old
+   Emacs documentation is in Info format. Though this is an old
    format, it still is extremely useful and lightweight.
 
-   - [ ] Enter the info system by using the key-combo "C-h i" (info).
-     Exit it again by using "q". Maybe it is best, if you open a
-     second window (e.g. by doing "C-x 3" to split the current one),
+   - [ ] Enter the info system by using the standard key-combo "C-h i"
+     (info). Exit it again by using "q". Maybe it is best, if you open
+     a second window (e.g. by doing "C-x 3" to split the current one),
      so that you still can see the instructions below
 
    These are the key combinations you should try to remember in order
@@ -211,13 +228,13 @@
 ** TODO What does this key or combo do?
 
    - [ ] To find out what a certain key can do in the current
-     context, use the key-combo "<C-h> k". You are then asked
+     context, use the standard key-combo "C-h k". You are then prompted
      to enter the combo. Try to find out what is mapped to
-     the "C-c C-t" combination.
+     the "C-c C-t" combination. I.e. you have to type "C-h k C-c C-t"
 
 ** TODO Get help on the current mode [0/2]
    - [ ] Invoke the help for the current buffer's major mode by
-     using the key-combo "C-h m"
+     using the standard key-combo "C-h m"
    - [ ] In the course's configuration I included a helm mode
      for fast finding keys of the current mode.
      Try the key-combo "<f5> d" (helm-descbinds). You now can narrow
@@ -289,8 +306,9 @@
    - State "TODO"       from              [2020-06-11 Thu 10:29]
    :END:
 
-   - [ ] You can jump to a link's target using the key-combo "C-c C-o"
-     (org-open-at-point). Try it out with some of the following links.
+   - [ ] You can jump to a link's target using the standard key-combo
+     "C-c C-o" (org-open-at-point). Try it out with some of the
+     following links.
    - Org recognizes simple links in a text just based on a number
      of string patterns
      - https://orgmode.org/worg/
@@ -304,17 +322,20 @@
      displayed. When you close the bracket again, Org will only show the description.
      You can just change the description by writing over it. If you want to change the
      underlying link address, see below.
-     - Links with descriptions follow this general format
+     - Links with descriptions follow this general format. Notice the *two* sets
+       of angular brackets
        :       [[LINK][DESCRIPTION]]
+       It is also correct to specify a link without a description like this
+       :       [[LINK]]
        here are some example links
        - [[https://orgmode.org/worg/][the Worg Website]]
        - [[file:/tmp][my tmp directory]]
        - [[file:~/.emacs.d/init.el][init.el]]
        - [[info:org#Link Format][the info page for the org link format]]  - a link to org's info pages
        - [[* Basic folding]] a link of this structure points to a heading in the present document
-   - [ ] The key-combo "C-c C-l" (org-insert-link) can be used to insert and edit links.
-     When the cursor is on a link, you will edit the link. Try it with the
-     previous links
+   - [ ] The standard key-combo "C-c C-l" (org-insert-link) can be
+     used to insert and edit links. When the cursor is on a link, you
+     will edit the link. Try it with the previous links
 
 ** TODO Some simple Org markup elements [0/4]
    Org mode offers a number of markup Elements ([[info:org#Emphasis and Monospace][q.v. this info page]]).
@@ -322,9 +343,10 @@
    our documents to other formats like PDF, HTML, OpenOffice, etc.
    - [ ] test it by writing some bold and italic text. You will note
      that in this emacs configuration you will get two stars when you
-     type a star (multiplication sign) after an empty space. This is
-     in expectation that you want to write bold text. They behave the
-     same as parentheses.
+     type "*" (multiplication sign) after an empty space. This is in
+     expectation that you want to write bold text. These "pair"
+     characters behave the same as parentheses, where you already get
+     the closing parentheses together with the opening ones.
      - *bold text*
      - /italics/
      - =verbatim=,   =*this is not bold*=
@@ -332,8 +354,8 @@
      - +ugly strike-through+
    - [ ] *You can write text that contains
      a line break*, but usually this kind of markup is for shorter
-     texts, and it maybe that the Emacs font setting will fail to
-     format the text correctly.
+     texts, and it may be that the Emacs font setting will fail to
+     highlight the text correctly.
    - [ ] You can wrap a piece of text into markers by using the normal
      Emacs way of selecting a region and then hitting one of the markup
      symbols. E.g. for making parts of the following text bold, use
@@ -353,26 +375,36 @@
    :LOGBOOK:
    - State "TODO"       from              [2020-06-11 Thu 16:14]
    :END:
-   - You can read this info page: [[info:org#TODO Basics][info:org#TODO Basics]]
    - by default Org offers *TODO* and *DONE* states, but this can be easily
-     adapted in sophisticated ways, as in this file. At the top of the
+     adapted in sophisticated ways, as in the present file. At the top of the
      file I defined a line defining different states
      : #+TODO: TODO(t!) WAIT(W@/!) | DONE(d!) CANCELED(c@) DELEGATED-AWAY(G@/!)
-   - [ ] change the state of a task by using the key-combo "C-c C-t" (org-todo).
+     All states to the right of the "|" are final states (DONE states). The
+     meanings of the characters in parentheses are discussed towards the end of
+     this section.
+   - [ ] change the state of a task by using the key-combo "C-c C-t" (org-todo). You
+     can be anywhere within the tasks body or on its headline.
      If there are multiple possibilities to which a state can evolve, you will
      be offered a menu.
-   - you can fine-tune the states changes (details are found
-     in this advanced information:  [[info:org#Tracking TODO state changes][info:org#Tracking TODO state changes)]]
-     - directives 
-       - character :: a normal character defines the abbreviation used for that state 
-       - ! :: logs a timestamp for changes to this state
-       - @ :: upon changing to this state, asks for a comment
-       - /! :: also log a timestamp when leaving the state (if next state does
-	 not already involve a timestamp taking)
-   - [ ] If you are on char at the beginning of a headline (the initial star),
+   - [ ] If you are on char at the beginning of a headline (the initial "*"),
      a number of shortcuts are available. If you hit "t" at this position,
      you will be offered the task state switching as if you had used "C-c C-t".
      Try it out.
+   - You can read this info page about more things you can do with TODO states:
+      [[info:org#TODO Basics][info:org#TODO Basics]]
+   - you can fine-tune the states changes, e.g. whether a change
+     should always generate a time stamp, whether it needs a note,
+     etc. (details are found in this advanced information:
+      [[info:org#Tracking TODO state
+      changes][info:org#Tracking TODO state changes)]]. I give a short list here:
+     - directives in parentheses: e.g. TODO(t!) WAIT(W@/!)
+       + character :: a normal character defines the abbreviation used
+         for that state. So, in the example TODO has "t" as its
+         shortcut, WAIT has "W"
+       + ! :: logs a timestamp for changes to this state
+       + @ :: upon changing to this state, asks for a comment
+       + /! :: also log a timestamp when leaving the state (if next state does
+	 not already involve a timestamp taking)
 
 ** TODO Scheduling tasks and deadlines [0/3]
    Org mode can associate times for scheduling tasks. Don't raise your
@@ -384,32 +416,38 @@
    - but there is also the date/time when you want to work on the task. E.g.
      the deadline may be in two weeks, but I want to work on this next Wednesday,
      so a task manager should offer the notion of expressing this concept.
-     This is the *scheduled* time, and this may be changed quite a lot during
-     a tasks lifetime. If I do not finish the task on Wednesday, I may reschedule
-     it for finishing it on Friday. But this will not affect the deadline!
-   - [ ] Schedule a task. This you can do by using the key-combo "C-c C-s" while
-     you are in a task. A calendar will be displayed. Within this calendar you
-     move by
+     This is the *scheduled* time, and it may be changed quite a lot during
+     a task's lifetime. If I do not finish the task on Wednesday, I may reschedule
+     it for working on it on Friday. But this will not affect the deadline!
+   - [ ] Schedule a task. This you can do by using the standard
+     key-combo "C-c C-s" while you are in a task. A calendar will be
+     displayed. Within this calendar you move by
      - <S-right>, <S-left>, <S-up>, <S-down> :: moves by days
      - <M-S-left>, <M-S-right> :: moves by months
      - <M-S-up>, <M-S-down> :: moves by years
      - <RET> :: selects the date
+     -  :: 
      - C-g :: cancels
-   - [ ] take note that now there is a "SCHEDULED" line added to the task, just
-     below the task's headline
-   - [ ] add a deadline to the same task by using the key-combo "C-c
-     C-d" (org-deadline). Take note that as with the scheduling, now
-     there is a "DEADLINE" keyword with timestamp below the task's headline.
+     But you also just can type at the prompt. Org will try to interpret it in
+     the best possible way as a date, and the calendar will adjust. Read about
+     this in [[info:org#The date/time prompt][info:org#The date/time prompt]]
+   - [ ] take note that after scheduling the task now there is a
+     "SCHEDULED:" line added to the task, just below the task's
+     headline
+   - [ ] add a deadline to the same task by using the standard
+     key-combo "C-c C-d" (org-deadline). Take note that as with the
+     scheduling, now there is a "DEADLINE" keyword with timestamp
+     below the task's headline.
    - [ ] you can create repeating tasks by adding a modifier to a time stamp like
      in these examples
      - [2020-07-10 Fri +7d]
      - [2020-07-10 Fri +2w]
      Go to one of the tasks in this file and schedule it or give it a
      deadline ("C-c C-s" or "C-c C-d").  Then add a repeater modifier
-     like in the examples above.
-     When you now resolve the task ("C-c C-t" and then chose an end-state like DONE),
-     you will see that the task is launched again and the timestamp is shifted
-     by the repeater interval.
+     like in the examples above. When you now resolve the task ("C-c
+     C-t" and then chose an end-state like DONE), you will see that
+     the task is launched again and the timestamp is shifted by the
+     repeater interval.
 
      You can read more about timestamps in [[info:org#Timestamps][info:org#Timestamps]]
 
@@ -433,7 +471,7 @@
    - [ ] go to one of your scheduled or deadline timestamps and
      change it like in the previous task
    - [ ] for big changes one may want to use the calendar. Position
-     the cursor on a timestamp and use
+     the cursor on a timestamp and use these standard keycombos
      - C-c . :: use calendar (leaves an active timestamp)
      - C-c ! :: use calendar (leaves an inactive timestamp)
    - [ ] the above key-combos can also be used to enter a new timestamp
@@ -453,9 +491,11 @@
      press <RETURN> to select the task to which you want to jump
      
 ** TODO Display the agenda and navigate within it [0/3]
-   - [ ] Use the key-combo "C-c a" to get the agenda menu. In the menu
-     choose "a" for "agenda". You will get the default view of the agenda,
-     which is the present week.
+   - [ ] Use the standard key-combo "C-c a" to get to the agenda
+     menu. In the menu choose "a" for "agenda". You will get the
+     default view of the agenda, which is the present week. All items
+     that have an associated scheduled or deadline time (or an active
+     timestamp in the headline) will be displayed in the agenda.
    - [ ] try navigating in the agenda using these keys
      - w :: week view
      - d :: day view
@@ -464,12 +504,15 @@
      - . :: go to today 
      - j :: jump to some date using the calendar
      - g :: rebuild the agenda view
-   - [ ] position the cursor on a task and try the following different
-     ways to view a task
+   - [ ] position the cursor on a task in the agenda view and try the
+     following different ways to view a task
      - <SPC> :: View task in other window without entering that window
        (you stay in the agenda window)
      - <TAB> :: go to task in other window
-     - <RETURN> :: switch to task buffer in this window 
+     - <RETURN> :: switch to task buffer in this window
+   - to get back to the agenda buffer, if you switched to another buffer,
+     just use the commands we learned above for switching buffers. E.g.
+     the helm way by doing "<f5> b"
 
 ** TODO Modify Scheduled times from the agenda view [0/2]
    - [ ] In the agenda view, place the cursor on a task and use
@@ -479,6 +522,9 @@
      you use the Emacs undo command ("C-_", it is also mapped to other
      keys), the change will be reverted in the agenda as well as in
      the Org file.
+   - [ ] Yoi can naturally also just use the standard key-combo "C-c C-s"
+     while you are on an agenda taks to change its scheduling, and "C-c C-d"
+     if you want to change its deadline.
    - [ ] use "g" to rebuild the view (the overlays vanish)
    - This is the typical workflow you will do in the morning and at
      the end of a day. In the morning, you schedule the tasks you want

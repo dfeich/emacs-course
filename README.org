@@ -20,40 +20,47 @@
    environments that happens to be a very good editor as well, I was
    blown away.
 
-   Org mode was a revelation - the dream of every scientist (physical
-   chemistry was my original profession). A notebook where you could
-   write easy marked up text, math, you could calculate, and as a
-   programmer you could use all your programming languages inside of
-   the documents and produce graphics inline - too good to be
-   true. And then it is one of the best task management systems as
-   well. I fell in love, learned lisp - enjoined its different feel from
-   the C and scripting languages I knew - something that reminded me of
-   the joy of playing with the HP Scientific Calculators many year ago.
+   Org mode was a revelation - the dream of every scientist (my
+   original training had been in physical chemistry). A notebook where
+   you can write easy marked up text, math formulas, you can
+   calculate, and as a programmer you can use all your programming
+   languages inside of the documents and produce graphics inline - too
+   good to be true. And then it is one of the best task management
+   systems as well. I fell in love, learned lisp - relished its
+   different feel from the C and scripting languages I knew -
+   something that reminded me of the joy of playing with the HP
+   Scientific Calculators many years ago.
 
    For a long time I entertained the hope of passing on the
-   know-how. But it's not so easy, since the thing which makes Emacs so
-   great and efficient - its staggering flexibility - also makes it
-   tough to teach. Most long time users end up with configurations that
-   fit them like a glove. But other users will be very opinionated in regards
-   to the packages and optimizations that are used. There's a good number
-   of excellent meta-distributions around, like [[https://www.spacemacs.org/][Spacemacs]] or [[https://github.com/hlissner/doom-emacs][Doom]]. They
-   are great and will fit many users. I myself always stayed with my hand-written
-   config that I constantly adapted to more modern styles (which prevented
-   me from ever declaring the dreaded [[https://www.emacswiki.org/emacs/DotEmacsBankruptcy][Dot Emacs Bankruptcy]]).
+   know-how. I had some mixed success in my work environment where
+   several of my scientific computing group picked it up to some
+   degree. But I never was able to teach it in a very structured
+   way. It's not so easy, since the thing which makes Emacs so great
+   and efficient - its staggering flexibility - also makes it tough to
+   teach. Most long time users end up with configurations that fit
+   them like a glove. But other users will be very opinionated in
+   regards to the packages and optimizations that are used. There's a
+   good number of excellent meta-distributions around, like [[https://www.spacemacs.org/][Spacemacs]]
+   or [[https://github.com/hlissner/doom-emacs][Doom]]. They are great and will fit many users. I myself always
+   stayed with my hand-written config that I constantly adapted to
+   more modern styles (which prevented me from ever having to declare
+   the dreaded [[https://www.emacswiki.org/emacs/DotEmacsBankruptcy][Dot Emacs Bankruptcy]]).
 
-   I now decided to make a first test run with a course that is based on
-   basic configuration of Emacs. I will start with an initial configuration
-   that already has a number of nice packages that will wet the appetite.
-   But the idea is not that learners shall adopt these exact configurations.
-   They should learn how the configuration works and how they can adapt
-   it. So, they by themselves will be able to make an informed decision about
-   whether they want to adopt one of the meta distributions, change the
+   I now decided to make a first test run with a course that is based
+   on basic configuration of Emacs. I will start with an initial
+   configuration that already has a number of nice packages that will
+   serve to wet the appetite. But the idea is not that learners need
+   to adopt these exact configurations. They should first get a glimpse
+   of what Emacs can do and then progress to learning how the
+   configuration works and how they can adapt it. So, they by
+   themselves will be able to make an informed decision about whether
+   to adopt one of the meta distributions, change the
    present one, or just develop their own.
 
    My big thanks goes to the whole Emacs community. One of the most
-   welcoming and helpful communities I had the pleasure to work with.
-   So many people have contributed to this products and I feel indebted
-   to all of them.
+   welcoming and helpful communities I had the pleasure working
+   with. So many people have contributed to this environment and I
+   feel indebted to all of them.
   
 ** Setup
 *** Install the configuration and the course
@@ -146,6 +153,19 @@
     Often commands consist of a key combination like
     - "C-h e" :: first press =CTRL= + =h=, then press =e=
     - "C-c C-c" :: press =CTRL= + =c= twice
+
+    *IMPORTANT:* When I use key combinations which are part of the standard
+    Emacs distribution, I will always state this by writing something like
+    #+begin_quote
+    ... use the standard key-combo "C-x C-f" (find-file) to open a file
+    #+end_quote
+    When I do not mention the term /standard/ key-combo, then the
+    command refers to a key-combination that works in this present
+    course configuration. It usually will use extra packages (all
+    packages come from the Emacs community's official repositories like the
+    GNU ELPA, MELPA, and Org). You can naturally change these later on
+    and create your own mappings that may better fit your own workflows
+    and keyboard layouts. Actually I encourage you to do so.
 
 *** Activate a theme for better readability
 
