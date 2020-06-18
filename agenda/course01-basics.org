@@ -119,7 +119,7 @@
    know how to switch between them in your windows.
 
    - [ ] You can switch to another buffer using the standard key-combo
-     "C-c b" (switch-buffer). You will be prompted for the buffer's name.
+     "C-x b" (switch-buffer). You will be prompted for the buffer's name.
      In this config we again connected it to the *ido* completion help, so
      you will find the familiar selection interface
    - One of the most flexible ways to switch to another buffer is again by
@@ -152,8 +152,8 @@
    - "M->" (end-of-buffer) :: Jumps to the end of the buffer
    - "C-a" (move-beginning-of-line) :: move to beginning of line
    - "C-e" (move-end-of-line) :: move to the end of the line
-   - "M-g M-g" (goto-line) :: go to a specific line number
-   - "M-g M-c" (goto-char) :: go to a specific character number within
+   - "M-g g" (goto-line) :: go to a specific line number
+   - "M-g c" (goto-char) :: go to a specific character number within
      the file
 
    Apart from these commands you can naturally use PageUp, PageDown to
