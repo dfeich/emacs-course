@@ -169,15 +169,16 @@
      viewing, and which interface it offers to you for interacting
      with it. E.g. A programming mode may highlight the keywords of a
      programming language and provide functions to easily jump between
-     functions. Org mode, which is the major mode for this current buffer,
-     provides functions to efficiently organize tasks and more, and it
-     is responsible for the highlighting of the headlines, etc.
-   - *Major Modes:* There can only be a single major mode active for a buffer
-     at any time. Major modes capture the main functionalities for working
-     with specific buffer types. E.g. there is c-mode, python-mode, text-mode,
-     web-mode, etc. The current buffer is currently displayed under Org-mode,
-     which is also a major-mode.
-   - *Minor Modes:* Minor overlay the major-mode with additional
+     functions, compile and debug it, etc. Org mode, which is the
+     major mode for this current buffer, provides functions to
+     efficiently organize tasks and more, and it is responsible for
+     the highlighting of the headlines, etc.
+   - *Major Modes:* There can only be a single major mode active for a
+     buffer at any time. Major modes capture the main functionalities
+     for working with specific buffer types. E.g. there is c-mode,
+     python-mode, text-mode, web-mode, etc. The current buffer is
+     displayed under the major-mode /Org-mode/.
+   - *Minor Modes:* Minor modes overlay a major-mode with additional
      functionality. Usually they focus on a small and well defined
      add-on functionality. They may provide extra key-bindings for
      inserting templates, or they may offer in-buffer
@@ -202,9 +203,10 @@
      - you can cancel the selection by using the standard key-combo
        "C-g" (keyboard-quit). Btw: "C-g" is used for cancelling all kinds
        of interactions in Emacs.
-   - [ ] Cutting text is called /killing text/. You can kill the text
-     by using the standard key-combo "c-k" (kill-line, or similar
-     commands depending on the current mode). Try to kill this sentence.
+   - [ ] Cutting text is called /killing text/. You can kill the
+     selected region by using the standard key-combo "C-k" (kill-line,
+     or similar commands depending on the current mode). Try to kill
+     this sentence.
    - [ ] You can insert/paste the killed text somewhere else by moving
      your cursor to the new position and using the standard key-combo
      "C-y" (yank). This action is called /yanking/. Insert your
@@ -212,12 +214,13 @@
    - [ ] If you do not want to cut the text, but you just want to copy
      it, you invoke the standard key-combo "M-w" (kill-ring-save) on
      the selected region. This leaves the region as it is, but you can
-     insert it somewhere else with "C-y" as above.
-   - [ ] When you invoke "C-y" multiple times in a row, the inserted
-     text will be exchanged against earlier killed text snippets. This
-     way you can step through the history of copied text pieces. The
+     insert a copy of it somewhere else with "C-y" as above. above.
+   - [ ] When you invoke "C-y" to insert the text, and then follow it
+     up by the standard key-combo "M-y" (yank-pop), the inserted text
+     will be exchanged against earlier killed text snippets. This way
+     you can step through the history of copied text pieces. The
      memory where the copied texts are stored is called the
-     "kill-ring"
+     "kill-ring", and repeatedly using "M-y" steps through it.
    - [ ] an even simpler way to work with the "kill-ring" is to
      use the respective helm command which in this Emacs config is
      mapped to "<f5> k" (helm-show-kill-ring). You will be able to
