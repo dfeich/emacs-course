@@ -47,20 +47,30 @@
    :END:
    - [ ] the basic way of loading a file uses the standard key-combo "C-x
      C-f" (find-file). You will then be prompted for the file.
-     - In this Emacs configuration I have configured
-       the *ido* system. This offers you a nicer way of selecting the file
-       from candidates based on what you type. It supports some
-       fuzzy matching logic (e.g. when you enter "cb" it will show you
-       "course-basics" among the hits, since "cb" matches the initials)
+     - In this Emacs configuration I have configured the *ido*
+       (interactive do) system which is nowadays part of standard
+       Emacs. This offers you a nicer way of selecting the file from
+       candidates based on what you type. It supports some fuzzy
+       matching logic (e.g. when you enter "cb" it will show you
+       "course-basics" among the hits, since "cb" matches the
+       initials)
      - when you enter "//" it will jump to the root file system.
      - when you enter "~/" it will jump to your home directory
      - if you enter the name of a nonexistent file "[nomatch]" will be displayed,
        if you hit <RETURN> it will offer to create this file as a new file. Confirm
        with a second <RETURN>.
+     - Use "C-f" in the ido prompt if you would like to exit the ido
+       prompt and go back to just typing the complete filename
+       (sometimes you may need this if you want to create a file with
+       a similar name as an existing file, since ido will only propose
+       the existing file name to you.)
+      - You can use the "C-d" in the ido prompt to open a view (dire-mode, we'll
+	come to that in a later lesson) of the directory.
    - [ ] a very powerful file navigation tool is available via the
      helm package in this Emacs configuration. Use the key-combo "<f5> f"
      (helm-find-files).
-     - you can use the arrow keys to move up, down, into and out of directories
+     - you can use the arrow/cursor keys to move up, down, into
+       (arrow-right) and out of (arrow-left) directories
      - typing will narrow the candidates down according to your search expression
        as you type. It supports fuzzy matching, so if you type "cb" it will match
        "course-basics.org" as well as any file like "cb123.txt".
@@ -68,10 +78,14 @@
      - typing the name of a nonexistent file will offer to create it. If you type
        a nonexistent filename and terminate it by a "/", you will be asked whether
        you want to create that directory.
-   - [ ] Save a file buffer after changing it by using the key-combo
+   - [ ] Save a file buffer after changing it by using the standard key-combo
      "C-x C-s" (save-buffer)
    - [ ] Save a buffer under another name by using the standard
      key-combo "C-x C-w" (write-file).
+
+   A nice article by Mickey Petersen about the ido selection system (a bit
+   advanced):
+   https://www.masteringemacs.org/article/introduction-to-ido-mode  
 
 ** TODO Understanding Emacs windows [0/6]
    Emacs is able to divide up its screen space into logical
@@ -106,7 +120,7 @@
      key-combo "C-x 0" (delete-window)
 
    You can read more about windows management in Emacs by following
-   this link [[info:emacs#Windows][info:emacs#Windows]]
+   this link [[info:emacs#Windows][info:emacs#Windows]]  (use C-c C-o to follow the link).
 
 ** TODO Buffers and switching between them [0/3]
    The text that you see inside of an Emacs window is a view of a /buffer/.
@@ -191,7 +205,7 @@
    can hover with your mouse above the different parts of the mode line
    to get information about the elements.
 
-** TODO selecting, copying, and pasting text [0/6]
+** TODO selecting, copying, and pasting text [0/8]
    Emacs predates the time where the /Cut, Copy & Paste/ expressions
    were coined, and the old command names still are used.
    - [ ] You can *select text* by placing the cursor on the starting
@@ -204,9 +218,9 @@
        "C-g" (keyboard-quit). Btw: "C-g" is used for cancelling all kinds
        of interactions in Emacs.
    - [ ] *Cutting* text is called /killing text/. You can kill the
-     selected region by using the standard key-combo "C-k" (kill-line,
-     or similar commands depending on the current mode). Try to kill
-     this sentence.
+     selected region by using the standard key-combo "C-w"
+     (kill-region).  Try to kill this sentence by first setting the
+     mark and region..
    - [ ] Undo: when changing things, we should also know how to undo them.
      Use the standard key-combo "C-_" (undo) to undo things you did (the command
      is also bound to  "C-/", "C-x u", and other combos for convenience). If
@@ -231,6 +245,17 @@
      mapped to "<f5> k" (helm-show-kill-ring). You will be able to
      quickly narrow down to the desired snippet from your kill history.
      Try it out.
+   - [ ] *Rectangular Regions*
+     - Emacs can easily handle rectangular regions. I just show here
+       one of the simplest ways.
+     - [ ] go to the beginning of the region you want to mark. Now, instead
+       of just using "C-SPC" you use the standard key-combo "C-x SPC"
+       (rectangle-mark-mode) to set the mark. If you now move the
+       cursor you will see that a rectangular selection is highlighted.
+       You can use the commands "C-w" for cutting (killing) or "M-w" for
+       just copying the selection just as above.
+     - this rectangle mark mode will actually only be active for this one
+       copy/kill operation.
 
    Emacs has a whole number of other shortcuts to cut text (remember:
    it is called "kill" in Emacs-speak). Here a selection of the

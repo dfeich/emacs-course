@@ -11,7 +11,11 @@
 #+PROPERTY: ATTACH_DIR_INHERIT t
 
 * An Emacs Course
-  *NOTE: This is a work in progress. Only some initial chapters are done"*
+  *NOTE: This is an early work in progress. Only some initial chapters
+  are done"* I am still at an early point where I try to go through
+  the course with some initial learners. So, it is not quite ready yet
+  for the general consumption and therefore I also have not yet
+  advertised it in any way.
 
 ** Introduction
 
@@ -202,6 +206,18 @@
     ready to go
 
     [[file:README-att/course-start2.png]]
+    
+*** Starting can be hard
+    The problem with such a complete system like Emacs can be that it
+    is a bit difficult to find the optimal path of minimal effort. And
+    often in order to do a certain thing it would be nice if you already
+    could use some other functionality that rather should be taught later
+    in another context. So, it's kind of a classical bootstrapping problem.
+    I try to minimize these situations, but I'll probably fail a few times
+    (e.g. how should you visit a link from inside of emacs in the first chapter
+    if the handling of links is only taught later). But I'll try to put some
+    additional description in those places. Just fill an issue in this github
+    if something seems really way beyond what you think can be understood.
     
 ** Planning of learning stages
    This is what I am planning to cover. Let's see whether I'll be able to
