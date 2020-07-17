@@ -11,6 +11,8 @@
 #+PROPERTY: ATTACH_DIR_INHERIT t
 
 * An Emacs Course
+  *NOTE: This is a work in progress. Only some initial chapters are done"*
+
 ** Introduction
 
    I had used Emacs for many years in its most simple way - just as a
@@ -141,8 +143,7 @@
     documentation uses the following important notation convention for
     the keystrokes:
 
-    - "C-f" :: this means hit the =CTRL= key together with the =f= key. The leading
-      key in front of the dash always refers to =CTRL=
+    - "C-f" :: this means press the =CTRL= key together with the =f= key. 
     - "M-f" :: M refers to the =META= key, which on Linux/MS-Windows is
       the =ALT= key (On Macs this can be the =Option= or =Command=
       key). So, =M-f= means press the =ALT= key together with the =f= key
@@ -151,15 +152,18 @@
     - "M-S-;" :: this means press the =META=, =SHIFT=, and =;= keys together.
 
     Often commands consist of a key combination like
-    - "C-h e" :: first press =CTRL= + =h=, then press =e=
-    - "C-c C-c" :: press =CTRL= + =c= twice
+    - "C-h e" :: first press =CTRL= + =h=, then press =e=. When keys are connected
+      with a dash, it means they should be pressed together. If a keycode is separated
+      by a space, it should be pressed separately.
+    - "C-c C-c" :: press =CTRL= + =c= twice (which you usually will do by
+      keeping your finder on the =CTRL= key and pressing =c= twice)
 
     *IMPORTANT:* When I use key combinations which are part of the standard
     Emacs distribution, I will always state this by writing something like
     #+begin_quote
     ... use the standard key-combo "C-x C-f" (find-file) to open a file
     #+end_quote
-    When I do not mention the term /standard/ key-combo, then the
+    When I do not mention the term /standard key-combo/, then the
     command refers to a key-combination that works in this present
     course configuration. It usually will use extra packages (all
     packages come from the Emacs community's official repositories like the

@@ -207,6 +207,11 @@
      selected region by using the standard key-combo "C-k" (kill-line,
      or similar commands depending on the current mode). Try to kill
      this sentence.
+   - [ ] Undo: when changing things, we should also know how to undo them.
+     Use the standard key-combo "C-_" (undo) to undo things you did (the command
+     is also bound to  "C-/", "C-x u", and other combos for convenience). If
+     a region is highlighted when you press undo, only the changes inside of
+     that chosen region will get undone.
    - [ ] You can *insert/paste* the killed text somewhere else by moving
      your cursor to the new position and using the standard key-combo
      "C-y" (yank). This action is called /yanking/. Insert your
@@ -295,9 +300,31 @@
   I really am serious). All basic help functionalities start with the
   standard key-combo "C-h"
 
+** TODO Get help on the current mode [0/2]
+   - [ ] Invoke the help for the current buffer's major mode by
+     using the standard key-combo "C-h m"
+   - [ ] In the course's configuration I included a helm mode for fast
+     finding keys of the current mode. This is one of the most
+     efficient ways to find out what the current mode can do and what
+     keymappings it has. Try the key-combo "<f5> d"
+     (helm-descbinds). You now can narrow down to commands.
+     Try to find how to "kill" a whole sentence: Just type "kill" and
+     "sent" and there you are.
+** TODO What does this key or combo do?
+
+   - [ ] To find out what a certain key can do in the current context,
+     use the standard key-combo "C-h k". You are then prompted to
+     enter the combo you're interested in. Try to find out what is
+     mapped to the "C-c C-t" combination, i.e. you have to type "C-h k
+     C-c C-t".
+
 ** TODO Using the GNU Info system [0/1]
    Emacs documentation is in Info format. Though this is an old
-   format, it still is extremely useful and lightweight.
+   format, it still is extremely useful and lightweight. Knowing
+   info will even help you often on the unix shell, because the
+   info manuals are often more reader-friendly. Try out "info date",
+   "info bash", or "info libc" on your command line (provided that
+   the info pages are installed on the system!)
 
    - [ ] Enter the info system by using the standard key-combo "C-h i"
      (info). Exit it again by using "q". Maybe it is best, if you open
@@ -320,31 +347,28 @@
      top node in a file. You need to put the node into parentheses, e.g.
      type: g (emacs). Tab expansion is available
 
-** TODO What does this key or combo do?
+** TODO Get documentation about functions, commands, and variables [0/2]
+   Again, all standard key-combos for getting help start with "C-h"
+   - [ ] "C-h C-h" :: get help on help. You can leave the help buffer
+     by typing "q" for quit     
+   - "C-h f" (describe-function) :: get the function documentation of
+     an emacs function or interactive command. If point (your cursor)
+     is located on a function name, it will already have that function
+     preselected as default. Try it by placing your cursor on this and
+     then typing "C-h f": describe-function.
+   - "C-h v" (describe-variable) :: Same as the previous one for variables.
+     E.g. the currently active major modes is stored in a variable. Have
+     a look at it: major-mode
 
-   - [ ] To find out what a certain key can do in the current context,
-     use the standard key-combo "C-h k". You are then prompted to
-     enter the combo you're interesting in. Try to find out what is
-     mapped to the "C-c C-t" combination. I.e. you have to type "C-h k
-     C-c C-t".
-
-** TODO Get help on the current mode [0/2]
-   - [ ] Invoke the help for the current buffer's major mode by
-     using the standard key-combo "C-h m"
-   - [ ] In the course's configuration I included a helm mode
-     for fast finding keys of the current mode.
-     Try the key-combo "<f5> d" (helm-descbinds). You now can narrow
-     down to commands
-** WRITE Get help on functions and variables
-   - "C-h f"
-   - "C-h v"
+   Helm
    - [ ] One of the most powerful ways to get information is by using the
      helm package that is configured in this Emacs configuration. You
      can invoke the key-combo "<f5> a" (helm-apropos). You can then search
-     for Emacs commands, functions, and variables.
-     - if your cursor is on a name that matches an Emacs function or variable,
-       it will be already used as the default command. You should see it already
-       chosen as the current candidate within the helm session.
+     for Emacs commands, functions, variables, and even fonts (called "faces").
+     - again, if your cursor is on a name that matches an Emacs
+       function or variable, it will be already used as the default
+       command. You should see it already chosen as the current
+       candidate within the helm session.
      - <RETURN> will jump to the respective help page
      - even better, "C-j" will show the help page while staying in helm mode,
        so you can nicely look up multiple commands one after the other.
@@ -355,7 +379,7 @@
    :LOGBOOK:
    - State "TODO"       from              [2020-06-11 Thu 10:38]
    :END:
-   Org mode has the ability to fold all kinds of its text structures, e.g.
+   Org mode has the ability to fold all kinds of text structures, e.g.
    - headlines
    - lists
    - a set of structures we will encounter later, like drawers (e.g. the LOGBOOK drawer
@@ -380,13 +404,16 @@
    - State "TODO"       from              [2020-06-11 Thu 10:39]
    :END:
    
-   Org mode started its life as a highly versatile outline editor and it is
-   very efficient at keeping information in hierarchical lists. The headline
-   hierarchy is one example of this. But there also basic lists, and Org
-   provides powerful commands to compose and manipulate them
+   Org mode started its life as a highly versatile outline editor and
+   it is very efficient at keeping information in hierarchical
+   lists. The headline hierarchy is one example of this. But there
+   also basic lists like the ones I use to write down the exercises in
+   this course. Org mode provides powerful commands to compose and
+   manipulate lists.
 
    - [ ] use key-combo "<M-up>" (org-metaup) and key-combo "<M-down>" (org-metadown) 
-     to move list up and down
+     to move a list item up and down. You can try it on the test list below the
+     exercises.
    - [ ] use key-combo "<M-left>" and "<M-right>" to change the
      hierarchy level of items. If you want to move a whole tree
      including its sub-items, you need to use key-combo "<M-S-right>"
@@ -447,7 +474,7 @@
      used to insert and edit links. When the cursor is on a link, you
      will edit the link. Try it with the previous links
 
-** TODO Some simple Org markup elements [0/4]
+** TODO Some simple Org text markup elements [0/4]
    Org mode offers a number of markup Elements ([[info:org#Emphasis and Monospace][q.v. this info page]]).
    The marking up of text is especially useful when we will export
    our documents to other formats like PDF, HTML, OpenOffice, etc.
@@ -462,7 +489,7 @@
      - =verbatim=,   =*this is not bold*=
      - _underlined_
      - +ugly strike-through+
-   - [ ] *You can write text that contains
+   - [ ] *You can write marked up text that contains
      a line break*, but usually this kind of markup is for shorter
      texts, and it may be that the Emacs font setting will fail to
      highlight the text correctly.
