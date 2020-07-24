@@ -448,9 +448,12 @@
    - [ ] change the list type and list-marker by using the key-combo "<S-left>" (org-shiftleft)
      and "<S-right>" (org-shiftright) on different lines of the following list, and watch how
      this cycles the symbols.
-   - [ ] you can mark several lines using the usual "<C-SPACE>" and then move
-     the cursor down. With the region highlighted, use "<S-M-right>". This
-     moves all the lines you marked one hierarchy level to the right.
+   - [ ] you can mark several lines using the usual "<C-SPACE>" and
+     then move the cursor down (you must start the mark from column 0
+     of the first line you want to move). With the region highlighted,
+     use "<S-M-right>". This moves all the lines you marked one
+     hierarchy level to the right. Try to move item2 and item3 and their subitems below
+     in one go to the right by first marking the region.
 
    My test list
    - item 1
@@ -498,7 +501,15 @@
    - [ ] The standard key-combo "C-c C-l" (org-insert-link) can be
      used to insert and edit links. When the cursor is on a link, you
      will edit the link. Try it with the previous links
-
+   - [ ] The key-combo "C-c l" (org-store-link) can be used to store a
+     link to the current buffer (whatever that buffer may be) in
+     memory. The storing of the link will be confirmed by a message in
+     the mini-buffer.  You can then insert that link into an org
+     buffer by using "C-c C-l" (org-insert-link) and then just pressing
+     <RET> for accepting the default, which is the last stored link. You
+     could also use the cursor keys up/down to move to other older links
+     that were stored.
+     
 ** TODO Some simple Org text markup elements [0/4]
    Org mode offers a number of markup Elements ([[info:org#Emphasis and Monospace][q.v. this info page]]).
    The marking up of text is especially useful when we will export
@@ -653,7 +664,13 @@
      press <RETURN> to select the task to which you want to jump
      
 ** TODO Display the agenda and navigate within it [0/3]
-   - [ ] Use the standard key-combo "C-c a" to get to the agenda
+   Note: the agenda view is composed from all files which have been
+   declared as agenda files. If you installed this course as
+   documented into ~/Documents/orgcourse then the settings will be
+   correct. Else you need to adapt the path definition for
+   org-directory in the [[file:~/.emacs.d/org-init.el::(setq org-directory "~/Documents/orgcourse/agenda/")][org-init.el]] configuration file.
+   
+   - [ ] Use the key-combo "C-c a" to get to the agenda
      menu. In the menu choose "a" for "agenda". You will get the
      default view of the agenda, which is the present week. All items
      that have an associated scheduled or deadline time (or an active
