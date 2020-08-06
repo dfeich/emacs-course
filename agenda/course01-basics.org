@@ -86,7 +86,7 @@
    A nice article by Mickey Petersen about the ido selection system (a bit
    advanced):
    https://www.masteringemacs.org/article/introduction-to-ido-mode  
-
+   
 ** TODO Understanding Emacs windows [0/6]
    Emacs is able to divide up its screen space into logical
    areas. They are called /windows/. It can do this even while running
@@ -296,7 +296,7 @@
 ** TODO Executing Emacs commands and getting information about them [0/4]
    Emacs has a huge number of commands and many of them are not bound to
    key combinations. Such commands can be entered after using the
-   standard key combo "M-x". In this configuration we have configured
+   standard key-combo "M-x" (execute-extended-command). In this configuration we have configured
    the package "smex" which makes the selection of commands much
    easier.
 
@@ -305,7 +305,7 @@
      allow you to enter e.g. the initials "ev", or you can type
      "emav", or "emacs-ver". <RETURN> selects the current command.
    - [ ] if you want to get information about a command in smex, you can
-     invoke the help system by using the key-combo "C-h f" (describe-function)
+     invoke the help system by using the standard key-combo "C-h f" (describe-function)
      while being in the smex selection dialog.
    - [ ] If you want to get information about a function written in
      the text of an Emacs buffer, you can use the same standard
@@ -327,18 +327,18 @@
 
 ** TODO Get help on the current mode [0/2]
    - [ ] Invoke the help for the current buffer's major mode by
-     using the standard key-combo "C-h m"
+     using the standard key-combo "C-h m" (describe-mode)
    - [ ] In the course's configuration I included a helm mode for fast
      finding keys of the current mode. This is one of the most
      efficient ways to find out what the current mode can do and what
      keymappings it has. Try the key-combo "<f5> d"
-     (helm-descbinds). You now can narrow down to commands.
-     Try to find how to "kill" a whole sentence: Just type "kill" and
-     "sent" and there you are.
+     (helm-descbinds). You now can narrow down to commands. Try to
+     find out how to "kill" a whole sentence in Emacs: Just type
+     "kill" and "sent" and there you are.
 ** TODO What does this key or combo do?
 
    - [ ] To find out what a certain key can do in the current context,
-     use the standard key-combo "C-h k". You are then prompted to
+     use the standard key-combo "C-h k" (describe-key). You are then prompted to
      enter the combo you're interested in. Try to find out what is
      mapped to the "C-c C-t" combination, i.e. you have to type "C-h k
      C-c C-t".
@@ -373,15 +373,16 @@
      type: g (emacs). Tab expansion is available
 
 ** TODO Get documentation about functions, commands, and variables [0/2]
-   Again, all standard key-combos for getting help start with "C-h"
-   - [ ] "C-h C-h" :: get help on help. You can leave the help buffer
+   Standard key-combos: All standard key-combos for getting help start
+   with "C-h"
+   - [ ] "C-h C-h" (help-for-help, std) :: get help on help. You can leave the help buffer
      by typing "q" for quit     
-   - "C-h f" (describe-function) :: get the function documentation of
+   - "C-h f" (describe-function, std) :: get the function documentation of
      an emacs function or interactive command. If point (your cursor)
      is located on a function name, it will already have that function
      preselected as default. Try it by placing your cursor on this and
      then typing "C-h f": describe-function.
-   - "C-h v" (describe-variable) :: Same as the previous one for variables.
+   - "C-h v" (describe-variable, std) :: Same as the previous one for variables.
      E.g. the currently active major modes is stored in a variable. Have
      a look at it: major-mode
 
@@ -593,8 +594,8 @@
      a task's lifetime. If I do not finish the task on Wednesday, I may reschedule
      it for working on it on Friday. But this will not affect the deadline!
    - [ ] Schedule a task. This you can do by using the standard
-     key-combo "C-c C-s" while you are in a task. A calendar will be
-     displayed. Within this calendar you move by
+     key-combo "C-c C-s" (org-schedule) while you are in a task. A
+     calendar will be displayed. Within this calendar you move by
      - <S-right>, <S-left>, <S-up>, <S-down> :: moves by days
      - <M-S-left>, <M-S-right> :: moves by months
      - <M-S-up>, <M-S-down> :: moves by years
@@ -645,8 +646,9 @@
      change it like in the previous task
    - [ ] for big changes one may want to use the calendar. Position
      the cursor on a timestamp and use these standard keycombos
-     - C-c . :: use calendar (leaves an active timestamp)
-     - C-c ! :: use calendar (leaves an inactive timestamp)
+     - C-c . (org-time-stamp) :: use calendar on timestamp (leaves an active timestamp)
+     - C-c ! (org-time-stamp-inactive) :: use calendar on timestamp (leaves an
+       inactive timestamp)
    - [ ] the above key-combos can also be used to enter a new timestamp
      anywhere in an org file. Try it.
    - [ ] If you add the prefix argument "C-u" before one of the above
@@ -670,7 +672,7 @@
    correct. Else you need to adapt the path definition for
    org-directory in the [[file:~/.emacs.d/org-init.el::(setq org-directory "~/Documents/orgcourse/agenda/")][org-init.el]] configuration file.
    
-   - [ ] Use the key-combo "C-c a" to get to the agenda
+   - [ ] Use the key-combo "C-c a" (org-agenda) to get to the agenda
      menu. In the menu choose "a" for "agenda". You will get the
      default view of the agenda, which is the present week. All items
      that have an associated scheduled or deadline time (or an active
@@ -701,7 +703,7 @@
      you use the Emacs undo command ("C-_", it is also mapped to other
      keys), the change will be reverted in the agenda as well as in
      the Org file.
-   - [ ] Yoi can naturally also just use the standard key-combo "C-c C-s"
+   - [ ] You can naturally also just use the standard key-combo "C-c C-s"
      while you are on an agenda taks to change its scheduling, and "C-c C-d"
      if you want to change its deadline.
    - [ ] use "g" to rebuild the view (the overlays vanish)
@@ -710,4 +712,100 @@
      to do on the current day to "today" and work on them. In the
      evening, you can decide to reschedule open tasks to some other
      day.
+
+* Collector
+
+(org-element-at-point)
+(org-find-top-headline)
+
+(org-up-heading-safe)
+(ignore-errors (nth 4 (org-heading-components)))
+
+"^ *- \"\\(\[^o\]+\\)\"[[:space:]]+(\\(\[^,)\]+\\)\\(, std\\)?)"
+  "\\(standard\\)?[[:space:]]+key-combo \"\\(\[^o\]+\\)\"[[:space:]]+(\\(\[^)\]+\\))"
+
+  #+begin_src elisp :results output
+    (save-mark-and-excursion
+      (goto-char (point-min))
+      (while 
+          (search-forward-regexp "\\(standard\\)?[[:space:]]+key-combo[[:space:]]+\"\\(\[^o\]+\\)\"[[:space:]]+(\\(\[^)\]+\\))" nil t)
+        (let ((type (or (match-string-no-properties 1) "custom"))
+    	  (combo (replace-regexp-in-string
+    		  " *\n *" " "
+    		  (or (match-string-no-properties 2) "")))
+    	  (command (replace-regexp-in-string "\n" ""  (or (match-string-no-properties 3) "")))
+    	  (sentence
+    	   (save-mark-and-excursion
+    	     (replace-regexp-in-string
+    	      "  *" " "	     
+    	      (replace-regexp-in-string
+    	       "\n" " " 	     
+    	       (buffer-substring-no-properties
+    		(progn (org-backward-sentence) (point))
+    		(progn (org-forward-sentence) (point))))))))
+          (princ (format "%10s %20s %40s  %s\n" type combo command sentence))))
+      (goto-char (point-min))
+      (while 
+          (search-forward-regexp "^ *- \"\\(\[^o\]+\\)\"[[:space:]]+(\\(\[^,)\]+\\)\\(, std\\)?)" nil t)
+        (princ (format "%10s %20s %40s\n"
+    		   (if (equal (match-string-no-properties 3) ", std") "standard" "custom")
+    		   (replace-regexp-in-string " *\n *" " "  (or (match-string-no-properties 1) ""))
+    		   (replace-regexp-in-string "\n" ""  (or (match-string-no-properties 2) "")))))
+      )
+  #+end_src
+
+  #+RESULTS:
+  #+begin_example
+    standard              C-x C-f                                find-file  the basic way of loading a file uses the standard key-combo "C-x C-f" (find-file).
+      custom               <f5> f                          helm-find-files  Use the key-combo "<f5> f" (helm-find-files).
+    standard              C-x C-s                              save-buffer  Save a file buffer after changing it by using the standard key-combo "C-x C-s" (save-buffer)
+    standard              C-x C-w                               write-file  Save a buffer under another name by using the standard key-combo "C-x C-w" (write-file).
+    standard                C-x 2                       split-window-below  Use the standard key-combo "C-x 2" (split-window-below)
+    standard                C-x 3                       split-window-right  split the window in which you currently are in two vertical windows by using the standard key-combo "C-x 3" (split-window-right)
+    standard                C-x 1                     delete-other-windows  to make the current window the only window of the frame, you can use the standard key-combo "C-x 1" (delete-other-windows)
+    standard                C-x 0                            delete-window  You can close the window in which the cursor is, by using the standard key-combo "C-x 0" (delete-window)
+    standard                C-x b                            switch-buffer  You can switch to another buffer using the standard key-combo "C-x b" (switch-buffer).
+    standard              C-x C-b                             list-buffers  The standard key-combo "C-x C-b" (list-buffers) will show you a window with a list of all the current buffers.
+    standard                C-SPC                         set-mark-command  You can *select text* by placing the cursor on the starting position and then use the standard key-combo "C-SPC" (set-mark-command).
+    standard                  C-g                            keyboard-quit  you can cancel the selection by using the standard key-combo "C-g" (keyboard-quit).
+    standard                  C-w                              kill-region  You can kill the selected region by using the standard key-combo "C-w" (kill-region).
+    standard                  C-_                                     undo  Use the standard key-combo "C-_" (undo) to undo things you did (the command is also bound to "C-/", "C-x u", and other combos for convenience).
+    standard                  C-y                                     yank  You can *insert/paste* the killed text somewhere else by moving your cursor to the new position and using the standard key-combo "C-y" (yank).
+    standard                  M-w                           kill-ring-save  If you do not want to cut the text, but you just want to *copy* it, you invoke the standard key-combo "M-w" (kill-ring-save) on the selected region.
+    standard                  M-y                                 yank-pop  When you invoke "C-y" to insert the text, and then follow it up by the standard key-combo "M-y" (yank-pop), the inserted text will be exchanged against earlier killed text snippets.
+    standard              C-x SPC                      rectangle-mark-mode  Now, instead of just using "C-SPC" you use the standard key-combo "C-x SPC" (rectangle-mark-mode) to set the mark.
+    standard                  C-s                          isearch-forward  Use the standard key-combo "C-s" (isearch-forward) to do an incremental string search forward.
+    standard              C-u C-s                          isearch-forward  Use the standard key-combo "C-u C-s" (isearch-forward) to do an incremental regexp search forward.
+    standard                  M-x                 execute-extended-command  Such commands can be entered after using the standard key-combo "M-x" (execute-extended-command).
+    standard                C-h f                        describe-function  if you want to get information about a command in smex, you can invoke the help system by using the standard key-combo "C-h f" (describe-function) while being in the smex selection dialog.
+    standard                C-h f                        describe-function  If you want to get information about a function written in the text of an Emacs buffer, you can use the same standard key-combo "C-h f" (describe-function) while the cursor is on the name of a function.
+      custom               <f5> x                                 helm-M-x  You can invoke the key-combo "<f5> x" (helm-M-x).
+    standard                C-h m                            describe-mode  Invoke the help for the current buffer's major mode by using the standard key-combo "C-h m" (describe-mode)
+      custom               <f5> d                           helm-descbinds  Try the key-combo "<f5> d" (helm-descbinds).
+    standard                C-h k                             describe-key  To find out what a certain key can do in the current context, use the standard key-combo "C-h k" (describe-key).
+    standard                C-h i                                     info  Enter the info system by using the standard key-combo "C-h i" (info).
+      custom               <f5> a                             helm-apropos  You can invoke the key-combo "<f5> a" (helm-apropos).
+      custom               <M-up>                               org-metaup  use key-combo "<M-up>" (org-metaup) and key-combo "<M-down>" (org-metadown) to move a list item up and down.
+      custom          <M-S-right>                       org-shiftmetaright  If you want to move a whole tree including its sub-items, you need to use key-combo "<M-S-right>" (org-shiftmetaright) or key-combo "<M-S-left>" (org-shiftmetaleft)
+      custom           <M-S-left>                        org-shiftmetaleft  If you want to move a whole tree including its sub-items, you need to use key-combo "<M-S-right>" (org-shiftmetaright) or key-combo "<M-S-left>" (org-shiftmetaleft)
+      custom           <M-Return>                          org-meta-return  add list items by using the key-combo "<M-Return>" (org-meta-return) at the end of a list line
+      custom             <S-left>                            org-shiftleft  change the list type and list-marker by using the key-combo "<S-left>" (org-shiftleft) and "<S-right>" (org-shiftright) on different lines of the following list, and watch how this cycles the symbols.
+    standard              C-c C-l                          org-insert-link  The standard key-combo "C-c C-l" (org-insert-link) can be used to insert and edit links.
+      custom                C-c l                           org-store-link  The key-combo "C-c l" (org-store-link) can be used to store a link to the current buffer (whatever that buffer may be) in memory.
+      custom              C-c C-t                                 org-todo  change the state of a task by using the key-combo "C-c C-t" (org-todo).
+    standard              C-c C-s                             org-schedule  This you can do by using the standard key-combo "C-c C-s" (org-schedule) while you are in a task.
+    standard              C-c C-d                             org-deadline  add a deadline to the same task by using the standard key-combo "C-c C-d" (org-deadline).
+      custom            <f5> <f5>           helm-org-agenda-files-headings  Use the key-combo "<f5> <f5>" (helm-org-agenda-files-headings).
+      custom                C-c a                               org-agenda  Use the key-combo "C-c a" (org-agenda) to get to the agenda menu.
+      custom                  M-<                            beg-of-buffer
+      custom                  M->                            end-of-buffer
+      custom                  C-a                   move-beginning-of-line
+      custom                  C-e                         move-end-of-line
+      custom                M-g g                                goto-line
+      custom                M-g c                                goto-char
+    standard                C-h f                        describe-function
+    standard                C-h v                        describe-variable
+  #+end_example
+
+
 
