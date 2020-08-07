@@ -162,12 +162,12 @@
    I will just list a few of the most important ones
 
    These are all standard key-combos
-   - "M-<" (beg-of-buffer) :: Jumps to the beginning of the buffer
-   - "M->" (end-of-buffer) :: Jumps to the end of the buffer
-   - "C-a" (move-beginning-of-line) :: move to beginning of line
-   - "C-e" (move-end-of-line) :: move to the end of the line
-   - "M-g g" (goto-line) :: go to a specific line number
-   - "M-g c" (goto-char) :: go to a specific character number within
+   - "M-<" (beg-of-buffer, std) :: Jumps to the beginning of the buffer
+   - "M->" (end-of-buffer, std) :: Jumps to the end of the buffer
+   - "C-a" (move-beginning-of-line, std) :: move to beginning of line
+   - "C-e" (move-end-of-line, std) :: move to the end of the line
+   - "M-g g" (goto-line, std) :: go to a specific line number
+   - "M-g c" (goto-char, std) :: go to a specific character number within
      the file
 
    Apart from these commands you can naturally use PageUp, PageDown to
@@ -646,9 +646,9 @@
      change it like in the previous task
    - [ ] for big changes one may want to use the calendar. Position
      the cursor on a timestamp and use these standard keycombos
-     - C-c . (org-time-stamp) :: use calendar on timestamp (leaves an active timestamp)
-     - C-c ! (org-time-stamp-inactive) :: use calendar on timestamp (leaves an
-       inactive timestamp)
+     - "C-c ." (org-time-stamp) :: use calendar on timestamp (leaves an active timestamp).
+     - "C-c !" (org-time-stamp-inactive) :: use calendar on timestamp (leaves an
+       inactive timestamp).
    - [ ] the above key-combos can also be used to enter a new timestamp
      anywhere in an org file. Try it.
    - [ ] If you add the prefix argument "C-u" before one of the above
@@ -712,100 +712,4 @@
      to do on the current day to "today" and work on them. In the
      evening, you can decide to reschedule open tasks to some other
      day.
-
-* Collector
-
-(org-element-at-point)
-(org-find-top-headline)
-
-(org-up-heading-safe)
-(ignore-errors (nth 4 (org-heading-components)))
-
-"^ *- \"\\(\[^o\]+\\)\"[[:space:]]+(\\(\[^,)\]+\\)\\(, std\\)?)"
-  "\\(standard\\)?[[:space:]]+key-combo \"\\(\[^o\]+\\)\"[[:space:]]+(\\(\[^)\]+\\))"
-
-  #+begin_src elisp :results output
-    (save-mark-and-excursion
-      (goto-char (point-min))
-      (while 
-          (search-forward-regexp "\\(standard\\)?[[:space:]]+key-combo[[:space:]]+\"\\(\[^o\]+\\)\"[[:space:]]+(\\(\[^)\]+\\))" nil t)
-        (let ((type (or (match-string-no-properties 1) "custom"))
-    	  (combo (replace-regexp-in-string
-    		  " *\n *" " "
-    		  (or (match-string-no-properties 2) "")))
-    	  (command (replace-regexp-in-string "\n" ""  (or (match-string-no-properties 3) "")))
-    	  (sentence
-    	   (save-mark-and-excursion
-    	     (replace-regexp-in-string
-    	      "  *" " "	     
-    	      (replace-regexp-in-string
-    	       "\n" " " 	     
-    	       (buffer-substring-no-properties
-    		(progn (org-backward-sentence) (point))
-    		(progn (org-forward-sentence) (point))))))))
-          (princ (format "%10s %20s %40s  %s\n" type combo command sentence))))
-      (goto-char (point-min))
-      (while 
-          (search-forward-regexp "^ *- \"\\(\[^o\]+\\)\"[[:space:]]+(\\(\[^,)\]+\\)\\(, std\\)?)" nil t)
-        (princ (format "%10s %20s %40s\n"
-    		   (if (equal (match-string-no-properties 3) ", std") "standard" "custom")
-    		   (replace-regexp-in-string " *\n *" " "  (or (match-string-no-properties 1) ""))
-    		   (replace-regexp-in-string "\n" ""  (or (match-string-no-properties 2) "")))))
-      )
-  #+end_src
-
-  #+RESULTS:
-  #+begin_example
-    standard              C-x C-f                                find-file  the basic way of loading a file uses the standard key-combo "C-x C-f" (find-file).
-      custom               <f5> f                          helm-find-files  Use the key-combo "<f5> f" (helm-find-files).
-    standard              C-x C-s                              save-buffer  Save a file buffer after changing it by using the standard key-combo "C-x C-s" (save-buffer)
-    standard              C-x C-w                               write-file  Save a buffer under another name by using the standard key-combo "C-x C-w" (write-file).
-    standard                C-x 2                       split-window-below  Use the standard key-combo "C-x 2" (split-window-below)
-    standard                C-x 3                       split-window-right  split the window in which you currently are in two vertical windows by using the standard key-combo "C-x 3" (split-window-right)
-    standard                C-x 1                     delete-other-windows  to make the current window the only window of the frame, you can use the standard key-combo "C-x 1" (delete-other-windows)
-    standard                C-x 0                            delete-window  You can close the window in which the cursor is, by using the standard key-combo "C-x 0" (delete-window)
-    standard                C-x b                            switch-buffer  You can switch to another buffer using the standard key-combo "C-x b" (switch-buffer).
-    standard              C-x C-b                             list-buffers  The standard key-combo "C-x C-b" (list-buffers) will show you a window with a list of all the current buffers.
-    standard                C-SPC                         set-mark-command  You can *select text* by placing the cursor on the starting position and then use the standard key-combo "C-SPC" (set-mark-command).
-    standard                  C-g                            keyboard-quit  you can cancel the selection by using the standard key-combo "C-g" (keyboard-quit).
-    standard                  C-w                              kill-region  You can kill the selected region by using the standard key-combo "C-w" (kill-region).
-    standard                  C-_                                     undo  Use the standard key-combo "C-_" (undo) to undo things you did (the command is also bound to "C-/", "C-x u", and other combos for convenience).
-    standard                  C-y                                     yank  You can *insert/paste* the killed text somewhere else by moving your cursor to the new position and using the standard key-combo "C-y" (yank).
-    standard                  M-w                           kill-ring-save  If you do not want to cut the text, but you just want to *copy* it, you invoke the standard key-combo "M-w" (kill-ring-save) on the selected region.
-    standard                  M-y                                 yank-pop  When you invoke "C-y" to insert the text, and then follow it up by the standard key-combo "M-y" (yank-pop), the inserted text will be exchanged against earlier killed text snippets.
-    standard              C-x SPC                      rectangle-mark-mode  Now, instead of just using "C-SPC" you use the standard key-combo "C-x SPC" (rectangle-mark-mode) to set the mark.
-    standard                  C-s                          isearch-forward  Use the standard key-combo "C-s" (isearch-forward) to do an incremental string search forward.
-    standard              C-u C-s                          isearch-forward  Use the standard key-combo "C-u C-s" (isearch-forward) to do an incremental regexp search forward.
-    standard                  M-x                 execute-extended-command  Such commands can be entered after using the standard key-combo "M-x" (execute-extended-command).
-    standard                C-h f                        describe-function  if you want to get information about a command in smex, you can invoke the help system by using the standard key-combo "C-h f" (describe-function) while being in the smex selection dialog.
-    standard                C-h f                        describe-function  If you want to get information about a function written in the text of an Emacs buffer, you can use the same standard key-combo "C-h f" (describe-function) while the cursor is on the name of a function.
-      custom               <f5> x                                 helm-M-x  You can invoke the key-combo "<f5> x" (helm-M-x).
-    standard                C-h m                            describe-mode  Invoke the help for the current buffer's major mode by using the standard key-combo "C-h m" (describe-mode)
-      custom               <f5> d                           helm-descbinds  Try the key-combo "<f5> d" (helm-descbinds).
-    standard                C-h k                             describe-key  To find out what a certain key can do in the current context, use the standard key-combo "C-h k" (describe-key).
-    standard                C-h i                                     info  Enter the info system by using the standard key-combo "C-h i" (info).
-      custom               <f5> a                             helm-apropos  You can invoke the key-combo "<f5> a" (helm-apropos).
-      custom               <M-up>                               org-metaup  use key-combo "<M-up>" (org-metaup) and key-combo "<M-down>" (org-metadown) to move a list item up and down.
-      custom          <M-S-right>                       org-shiftmetaright  If you want to move a whole tree including its sub-items, you need to use key-combo "<M-S-right>" (org-shiftmetaright) or key-combo "<M-S-left>" (org-shiftmetaleft)
-      custom           <M-S-left>                        org-shiftmetaleft  If you want to move a whole tree including its sub-items, you need to use key-combo "<M-S-right>" (org-shiftmetaright) or key-combo "<M-S-left>" (org-shiftmetaleft)
-      custom           <M-Return>                          org-meta-return  add list items by using the key-combo "<M-Return>" (org-meta-return) at the end of a list line
-      custom             <S-left>                            org-shiftleft  change the list type and list-marker by using the key-combo "<S-left>" (org-shiftleft) and "<S-right>" (org-shiftright) on different lines of the following list, and watch how this cycles the symbols.
-    standard              C-c C-l                          org-insert-link  The standard key-combo "C-c C-l" (org-insert-link) can be used to insert and edit links.
-      custom                C-c l                           org-store-link  The key-combo "C-c l" (org-store-link) can be used to store a link to the current buffer (whatever that buffer may be) in memory.
-      custom              C-c C-t                                 org-todo  change the state of a task by using the key-combo "C-c C-t" (org-todo).
-    standard              C-c C-s                             org-schedule  This you can do by using the standard key-combo "C-c C-s" (org-schedule) while you are in a task.
-    standard              C-c C-d                             org-deadline  add a deadline to the same task by using the standard key-combo "C-c C-d" (org-deadline).
-      custom            <f5> <f5>           helm-org-agenda-files-headings  Use the key-combo "<f5> <f5>" (helm-org-agenda-files-headings).
-      custom                C-c a                               org-agenda  Use the key-combo "C-c a" (org-agenda) to get to the agenda menu.
-      custom                  M-<                            beg-of-buffer
-      custom                  M->                            end-of-buffer
-      custom                  C-a                   move-beginning-of-line
-      custom                  C-e                         move-end-of-line
-      custom                M-g g                                goto-line
-      custom                M-g c                                goto-char
-    standard                C-h f                        describe-function
-    standard                C-h v                        describe-variable
-  #+end_example
-
-
 

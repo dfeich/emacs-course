@@ -1,0 +1,110 @@
+#+TODO: TODO(t!) WAIT(W@/!) | DONE(d!) CANCELED(c@) DELEGATED-AWAY(G@/!)
+#+TODO: BUG(b!) WRITE(w) | FIXED(f!) WONTFIX(w!)
+#+TITLE: Emacs Course 02
+
+#+AUTHOR: Derek Feichtinger
+#+EMAIL: dfeich@gmail.com
+
+# the following property setting is inherited by all org headings
+# it is used by an advanced feature for presenting nicer agenda views
+# (org-super-agenda)
+#+PROPERTY: agenda-group emacs_course
+
+* Emacs Course 02 - higher productivity
+** Creating tables and working with rows and columns [0/6]
+   Try the following exercises in the example table, below
+
+   1. [ ] creating a simple table
+      If you start a line with a "|" (pipe) sign, org mode  will interpret
+      it as a table. Try it.
+   
+   2. [ ] In a table you can move to the next cell to cell using "<TAB>"
+      and to the previous cell with "<S-TAB>". Try it in the test table
+      above. If you use <TAB> in the last cell of the table, a new
+      row will be added.
+
+   3. [ ] You can move columns and rows by using the M key + a cursor key,
+      e.g. "<M-right>" will move a table column to the right.
+
+   4. [ ] You can insert a table column to the left of the current
+      column by using the standard key-combo "<S-M-right>"
+      (org-shiftmetaright). You can insert a table row above the current
+      row by using the standard key-combo "<S-M-down>"
+      (org-shiftmetadown).
+
+   5. [ ] You can delete a table column by using the standard
+      key-combo "<S-M-left>" (org-shiftmetaleft). Deleting a table row
+      is done by using the standard key-combo "<S-M-up>"
+      (org-shiftmetaup).
+
+   6. [ ] You can insert a horizontal separation bar by using
+      the standard key-combo "C-c -" (org-table-insert-hline).
+      Insert a ruler before the "Total" row.
+
+
+   | Item  | Amount | cost per item | sum | incl VAT |
+   |-------+--------+---------------+-----+----------|
+   | name1 |      3 |       1500.00 |     |          |
+   | name2 |      9 |       4000.00 |     |          |
+   | name3 |      4 |       2800.00 |     |          |
+   | Total |        |               |     |          |
+
+** simple table formulas [/] 
+
+   1. [ ] You can add a formula to a table field by
+      just writing the definition into the field. Other
+      fields are referenced by a row/column syntax like
+      @2$4, where this refers to the second row and fourth column.
+      Below, I filled in such a definition. When you use
+      the standard key-combo "C-c C-c" (org-ctrl-c-ctrl-c) while
+      on the table field, the formula will be calculated.      
+
+      | Item  | Amount | cost per item | sum           | incl VAT |
+      |-------+--------+---------------+---------------+----------|
+      | name1 |      3 |       1500.00 | :=@2$2 * @2$3 |          |
+      | name2 |      9 |       4000.00 |               |          |
+      | name3 |      4 |       2800.00 |               |          |
+      |-------+--------+---------------+---------------+----------|
+      | Total |        |               |               |          |
+
+      You will notice, that this adds a line with Meta-Information to the
+      table.
+
+   2. [ ] If you refer to an item in the same row or same column, you
+      are allowed to drop that part from the cell reference. E.g.
+      the example above could have been done like:
+      
+      | Item  | Amount | cost per item | sum           | incl VAT |
+      |-------+--------+---------------+---------------+----------|
+      | name1 |      3 |       1500.00 | :=$2 * $3     |          |
+      | name2 |      9 |       4000.00 |               |          |
+      | name3 |      4 |       2800.00 |               |          |
+      |-------+--------+---------------+---------------+----------|
+      | Total |        |               |               |          |
+
+   3. [ ] You can enter the table editor by using the standard
+      key-combo "C-c '" (org-edit-special) while having the cursor
+      placed in a table.
+      
+      | Item  | Amount | cost per item |   sum | incl VAT |
+      |-------+--------+---------------+-------+----------|
+      | name1 |      3 |       1500.00 | 4500. |          |
+      | name2 |      9 |       4000.00 |       |          |
+      | name3 |      4 |       2800.00 |       |          |
+      |-------+--------+---------------+-------+----------|
+      | Total |        |               |       |          |
+      #+TBLFM: @2$4=$2 * $3
+
+   4. [ ] You can use a range function by defining a range like
+      "@2$4..@4$4." Look at the example below. You can execute the
+      formula by going to the TBLFM row below the table and executing
+      the standard key-combo "C-c '" (org-edit-special) on it
+      
+      | Item  | Amount | cost per item | sum | incl VAT |
+      |-------+--------+---------------+-----+----------|
+      | name1 |      3 |       1500.00 |     |          |
+      | name2 |      9 |       4000.00 |     |          |
+      | name3 |      4 |       2800.00 |     |          |
+      |-------+--------+---------------+-----+----------|
+      | Total |        |               |     |          |
+      #+TBLFM: @2$4..@4$4=$2 * $3

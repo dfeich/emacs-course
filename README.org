@@ -262,33 +262,36 @@
       - [ ] Magit - is there a better Git interface than this project from Jonas Bernoulli?
       - [ ] Tramp (a killer feature for users working on remote hosts. Loved by
 	system administrators and developers)
-      - [ ] Org capture - create tasks and back-links from everywhere
-      - [ ] Emacs Macros	
+      - [ ] Emacs keyboard macros	
       - [ ] do inline calculations with Calc
-      - [ ] dired revisited
+      - Org mode
+	- [ ] Org capture - create tasks and back-links from everywhere
+	- [ ] basic org mode tables
+	- [ ] simple first steps with Org Babel
+      - [ ] dired revisited (filename in-buffer editing, etc)
       - [ ] shell command execution from Emacs
+      - [ ] gpg for encrypting files
+   3. Emacs for programming
       - [ ] a look at some of the programming modes
       - [ ] lsp-mode (a modern IDE interface in Emacs)
       - [ ] linting (Syntax checking with flycheck)
-      - [ ] gpg for encrypting files
-   3. Authoring Latex, HTML, and other documents with Org mode
+   4. Authoring Latex, HTML, and other documents with Org mode
       - [ ] write scientific documents containing math, preview the math
       - [ ] include graphics and screenshots
-      - [ ] simple first steps with Org Babel to execute code and
-	create graphics
-   4. Org Babel for real
-   5. Fast Presentations with Latex beamer through Org
-   6. Integrating with your browser
+      - [ ] Org Babel for executing code and creating graphics from data
+   5. Org Babel for real
+   6. Fast Presentations with Latex beamer through Org
+   7. Integrating with your browser
       - [ ] Use Emacs to edit forms in browsers like Firefox or Chrome
         (through the daemon)
       - [ ] org-protocol: transfer information from the browser to Emacs,
 	e.g. mark some text in the browser and get it into Emacs, or
 	convert a web page to org mode and find it ready in your buffer!
-   7. Emacs and email
+   8. Emacs and email
       - [ ] mu4e and mbsync to manage email
       - [ ] integrate email with org mode task management, making
         efficient use of org capture and email links in workflows.
-   8. Emacs for science
+   9. Emacs for science
       - [ ] helm-bibtex
       - [ ] org-ref
       - [ ] org-babel
