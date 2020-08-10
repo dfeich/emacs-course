@@ -11,7 +11,7 @@
 #+PROPERTY: agenda-group emacs_course
 
 * Emacs Course 02 - higher productivity
-** Creating tables and working with rows and columns [0/6]
+** Creating Org tables and working with rows and columns [0/6]
    Try the following exercises in the example table, below
 
    1. [ ] creating a simple table
@@ -49,7 +49,7 @@
    | name3 |      4 |       2800.00 |     |          |
    | Total |        |               |     |          |
 
-** simple table formulas [/] 
+** simple Org table formulas [0/8] 
 
    1. [ ] You can add a formula to a table field by
       just writing the definition into the field. Other
@@ -67,12 +67,19 @@
       |-------+--------+---------------+---------------+----------|
       | Total |        |               |               |          |
 
-      You will notice, that this adds a line with Meta-Information to the
-      table.
+      You will notice, that this adds a line with Meta-Information below
+      the table. This is the way that org stores the tables formulas.
 
-   2. [ ] If you refer to an item in the same row or same column, you
-      are allowed to drop that part from the cell reference. E.g.
-      the example above could have been done like:
+      *Note* that, unlike in usual mathematical notation,
+      multiplication binds more strongly than division: "a*b/c*d" is
+      equivalent to "(a*b)/(c*d)". So, you will have to use
+      parentheses if you want "(a*b/c)*d".
+
+   2. [ ] Simplification: If you refer to an item in the same row ,
+      you are allowed to drop the row information from the cell
+      reference. E.g. the example above could have been done like in
+      the example below. Similarly, you may drop the column information
+      when refering to cells in the same column.
       
       | Item  | Amount | cost per item | sum           | incl VAT |
       |-------+--------+---------------+---------------+----------|
@@ -82,23 +89,34 @@
       |-------+--------+---------------+---------------+----------|
       | Total |        |               |               |          |
 
-   3. [ ] You can enter the table editor by using the standard
+   3. [ ] You can get the cell address by placing the cursor in a cell
+      and then executing the standard key-combo "C-c ?" in that
+      cell. The cell's address will be displayed in the mini-buffer.
+      Try it in one of the tables.
+
+   4. [ ] You can enter the *table editor* by using the standard
       key-combo "C-c '" (org-edit-special) while having the cursor
-      placed in a table.
+      placed in a table. You can now edit the equations, add
+      additional equations and the matching table cells even get
+      highlighted when you move across the equation. You can leave the
+      editor either by "C-c C-c" (saves the changes) or by "C-c C-q"
+      to quit without saving. Try it in the following table
       
       | Item  | Amount | cost per item |   sum | incl VAT |
       |-------+--------+---------------+-------+----------|
-      | name1 |      3 |       1500.00 | 4500. |          |
+      | name1 |      3 |       1500.00 | 4500. |   4846.5 |
       | name2 |      9 |       4000.00 |       |          |
       | name3 |      4 |       2800.00 |       |          |
       |-------+--------+---------------+-------+----------|
       | Total |        |               |       |          |
-      #+TBLFM: @2$4=$2 * $3
+      #+TBLFM: @2$4=$2 * $3::@2$5=$4 * 1.077
 
-   4. [ ] You can use a range function by defining a range like
-      "@2$4..@4$4." Look at the example below. You can execute the
-      formula by going to the TBLFM row below the table and executing
-      the standard key-combo "C-c '" (org-edit-special) on it
+   5. [ ] You can use cell ranges in functions by defining a range
+      like "@2$4..@4$4." Look at the example below. You can execute
+      the table formula by going to the TBLFM row below the table and
+      executing the standard key-combo "C-c C-c" (org-ctrl-c-ctrl-c)
+      on it. Another way to recalculate the whole table is to
+      issue the standard emacs command "org-table-recalculate".
       
       | Item  | Amount | cost per item | sum | incl VAT |
       |-------+--------+---------------+-----+----------|
@@ -107,4 +125,88 @@
       | name3 |      4 |       2800.00 |     |          |
       |-------+--------+---------------+-----+----------|
       | Total |        |               |     |          |
-      #+TBLFM: @2$4..@4$4=$2 * $3
+      #+TBLFM: @2$4..@4$4=$2 * $3::@2$5..@4$5=$4 * 1.077
+
+   6. [ ] We can use another range function to get the sums
+      in the two fields of the "Total" row. The sum
+      is obtained by using Calc's "vsum" function (vector
+      sum) in the formula. Use "C-c C-c" on the TBLFM row
+      to calculate the table.
+ 
+      | Item  | Amount | cost per item | sum | incl VAT |
+      |-------+--------+---------------+-----+----------|
+      | name1 |      3 |       1500.00 |     |          |
+      | name2 |      9 |       4000.00 |     |          |
+      | name3 |      4 |       2800.00 |     |          |
+      |-------+--------+---------------+-----+----------|
+      | Total |        |               |     |          |
+      #+TBLFM: @2$4..@4$4=$2 * $3::@2$5..@4$5=$4 * 1.077::@5$4..@5$5=vsum(@2..@4)
+
+   7. [ ] Simplification: If you want to refer to the last row or last
+      column you can use @> or $> instead of the numeric value.
+      Similarly, the first row and column can be referred to as @< and
+      $<, respectively. This makes it easier to write many formulas.
+
+      | Item  | Amount | cost per item | sum | incl VAT |
+      |-------+--------+---------------+-----+----------|
+      | name1 |      3 |       1500.00 |     |          |
+      | name2 |      9 |       4000.00 |     |          |
+      | name3 |      4 |       2800.00 |     |          |
+      |-------+--------+---------------+-----+----------|
+      | Total |        |               |     |          |
+      #+TBLFM: @2$4..@4$4=$2 * $3::@2$5..@4$5=$4 * 1.077::@>$4..@>$5=vsum(@2..@4)
+
+   8. [ ] Simplification: You can refer to all the rows between to
+      horizontal separator lines (hlines) by specifying a range using
+      the roman numerals like this: @I..@II (all rows between the
+      first and second hline), @I..@III (all rows between the first
+      and third hline), etc. The above table then can be
+      written as
+      
+      | Item  | Amount | cost per item | sum | incl VAT |
+      |-------+--------+---------------+-----+----------|
+      | name1 |      3 |       1500.00 |     |          |
+      | name2 |      9 |       4000.00 |     |          |
+      | name3 |      4 |       2800.00 |     |          |
+      |-------+--------+---------------+-----+----------|
+      | Total |        |               |     |          |
+      #+TBLFM: @2$4..@4$4=$2 * $3::@2$5..@4$5=$4 * 1.077::@>$4..@>$5=vsum(@I..@II)
+
+      Note that the syntax using @I, @II can only be used on the
+      right hand side of an equation. So, regrettably we cannot
+      write something like this
+      :  @I$4..@II$4=$2 * $3
+
+      You can get more information at [[info:org#Field and range formulas][info:org#Field and range formulas]]
+
+   9. Simplification: If all fields of a column except the table
+      header should have the same formula, you can use a so-called
+      column formula.
+      : $4 = $2 * $3
+      If a cell is defined by both a column formula and a normal
+      field/range formula, the field/range formula wins.
+      You can read more at [[info:org#Column formulas][info:org#Column formulas]]
+
+      | Item  | Amount | cost per item | sum | incl VAT |
+      |-------+--------+---------------+-----+----------|
+      | name1 |      3 |       1500.00 |     |          |
+      | name2 |      9 |       4000.00 |     |          |
+      | name3 |      4 |       2800.00 |     |          |
+      |-------+--------+---------------+-----+----------|
+      | Total |        |               |     |          |
+      #+TBLFM: $4=$2 * $3::$5=$4 * 1.077::@>$4..@>$5=vsum(@I..@II)
+
+   10. Formatting: Numbers can be formatted by adding a
+       C style formatting specifyer after a semicolon, e.g.
+       : @>$4..@>$5=vsum(@I..@II);%.2f
+
+       | Item  | Amount | cost per item | sum | incl VAT |
+       |-------+--------+---------------+-----+----------|
+       | name1 |      3 |       1500.00 |     |          |
+       | name2 |      9 |       4000.00 |     |          |
+       | name3 |      4 |       2800.00 |     |          |
+       |-------+--------+---------------+-----+----------|
+       | Total |        |               |     |          |
+       #+TBLFM: $4=$2 * $3;%.2f::$5=$4 * 1.077;%.2f::@>$4..@>$5=vsum(@I..@II);%.2f
+
+      
