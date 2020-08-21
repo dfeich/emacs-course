@@ -1,6 +1,6 @@
 #+TODO: TODO(t!) WAIT(W@/!) | DONE(d!) CANCELED(c@) DELEGATED-AWAY(G@/!)
 #+TODO: BUG(b!) WRITE(w) | FIXED(f!) WONTFIX(w!)
-#+TITLE: Emacs Course 02
+#+TITLE: Emacs Course 02 - higher productivity
 
 #+AUTHOR: Derek Feichtinger
 #+EMAIL: dfeich@gmail.com
@@ -10,7 +10,7 @@
 # (org-super-agenda)
 #+PROPERTY: agenda-group emacs_course
 
-* Emacs Course 02 - higher productivity
+* Org mode tables primer
 ** Creating Org tables and working with rows and columns [0/6]
    Try the following exercises in the example table, below
 
@@ -210,3 +210,188 @@
        #+TBLFM: $4=$2 * $3;%.2f::$5=$4 * 1.077;%.2f::@>$4..@>$5=vsum(@I..@II);%.2f
 
       
+
+   
+* Orb Babel first steps
+  One of the most versatile features of Org mode is its ability to
+  use blocks of source code. It actually implements a literate
+  programming environment (q.v.  [[http://www.literateprogramming.com/knuthweb.pdf][Donald Knuth's seminal paper]] from 1984
+  and this nice article: [[https://www.offerzen.com/blog/literate-programming-empower-your-writing-with-emacs-org-mode][Literate Programming: Empower Your Writing with Emacs Org-Mode]])
+
+** preconditions
+   To use a particular programming language with org mode it must be configured
+   in the variable =org-babel-do-load-languages=. In the course configuration
+   I have done that for many languages already.
+   A list of supported languages is given at the [[https://orgmode.org/worg/org-contrib/babel/languages.html][Worg site]].
+   
+** first steps with shell scripts [0/4]
+
+   1. [ ] Below you see a first simple source block. You can execute the
+      block by positioning the cursor within and then using
+      the standard key-combo "C-c C-c" that we already know from
+      before.
+
+      #+begin_src bash 
+      echo "hello world I'm finally here"
+      #+end_src 
+
+      You are asked whether you really want to execute
+      the block, and the results get inserted below the block
+      
+   2. [ ] The easy way to insert a block without having to type all
+      the boilerplate is to use the standard key-combo "C-c C-,"
+      (org-insert-structure-template) followed by "s" for a source block.
+      Try it right here.
+
+   3. [ ] Changing the result type.
+      Execute the following source block
+      
+      #+begin_src bash 
+      echo "hello world I'm finally here"
+      echo "hello world I'm finally here"
+      #+end_src 
+
+      So, this ended up as a table! Why? Org provides a number
+      of options of how it should interpret the results (and what
+      actually constitutes the result). You can steer this explicitely
+      using the :results argument.
+
+      #+begin_src bash :results verbatim
+      echo "hello world I'm finally here"
+      echo "hello world I'm finally here"
+      #+end_src 
+
+      #+begin_src bash :results table
+      echo "hello world I'm finally here"
+      echo "hello world I'm finally here"
+      #+end_src
+
+            #+begin_src bash :results list
+      echo "hello world I'm finally here"
+      echo "hello world I'm finally here"
+      #+end_src 
+
+   4. [ ] The best way to edit a code block in a native language environment
+      is to use the standard key-combo "C-c '" (org-edit-special). This will
+      open the code in a separate buffer with the correct language mode. When
+      done you can switch back using again "C-c '" or you may cancel all edits
+      by doing "C-c C-k" (it's actually written in the top line of the buffer).
+      Try it with this block
+
+      #+begin_src bash
+	while read a b c; do
+	    echo $a $b $c
+	done <<EOF
+	1 2 3
+	A B C
+	x y z
+	EOF
+      #+end_src
+
+   5. Defining the execution directory. You can use the :dir flag to define at which path the commands
+      should be executed
+      #+begin_src bash :results verbatim
+	hostname
+	pwd
+      #+end_src
+
+      #+begin_src bash :results verbatim :dir /tmp
+	hostname
+	pwd
+      #+end_src
+
+      Note: this feature is most powerful if you combine it with
+      Emacs' great TRAMP feature for accessing remote hosts. E.g.
+      using :dir /ssh:user@somehost.test.org:/tmp. Try it with
+      a host that you can reach
+      
+      #+begin_src bash :results verbatim :dir /ssh:myhost.site.org:/tmp
+	hostname
+	pwd
+      #+end_src
+	
+** TODO sessions
+
+** creating graphics [0/2]
+
+   1. [ ] Creating a graph with graphviz. Execute the following code block. The result will
+      be an org link to the produced PNG file. It's name is defined in the :file argument
+      of the org block.
+      
+      #+BEGIN_SRC dot :file /tmp/example1.png
+       digraph { 
+
+         node [shape=circle,fontsize=8,fixedsize=true,width=0.9]; 
+         edge [fontsize=8]; 
+         rankdir=LR;
+
+         "low-priority" [shape="doublecircle" color="orange"];
+         "high-priority" [shape="doublecircle" color="orange"];
+
+         "s1" -> "low-priority";
+         "s2" -> "low-priority";
+         "s3" -> "low-priority";
+
+         "low-priority" -> "s4";
+         "low-priority" -> "s5";
+         "low-priority" -> "high-priority" [label="wait-time exceeded"];
+
+         "high-priority" -> "s4";
+         "high-priority" -> "s5";
+
+       }
+      #+END_SRC
+     
+      In order to display that link as an inline image, you just need
+      to toggle Org's inline image setting by using the standard
+      key-combo "C-c C-x C-v" (org-toggle-inline-images).
+
+   2. [ ] Creating a graph with python. In python blocks we have to define that the result will
+      be a file link. Org will wrap the code into a function and use the string received
+      from the =return= statement for the link address. Take a look at this example
+      #+begin_src python :results file
+	import matplotlib, numpy
+	matplotlib.use('Agg')
+	import matplotlib.pyplot as plt
+	outfile='/tmp/python3-example1.png'
+	fig=plt.figure(figsize=(4,2))
+	x=numpy.linspace(-15,15)
+	plt.plot(numpy.sin(x)/x)
+	fig.tight_layout()
+	plt.savefig(outfile)
+	return outfile # return filename to org-mode
+      #+end_src
+
+** Inputting variables, tables, other source blocks into babel
+
+   1. Using a table with an SQL source block
+      #+NAME: table1
+      | col1 | col2 | col3 |
+      |------+------+------|
+      |    5 |   25 |      |
+      |    6 |   30 |      |
+      |    7 |   35 |      |
+      |    8 |   40 |      |
+      |    9 |   45 |      |
+      |   10 |   50 |      |
+      |   11 |   55 |      |
+      |   12 |   60 |      |
+      |   13 |   65 |      |
+      |   14 |   70 |      |
+      |   15 |   75 |      |
+
+      It is necessary to create the explicit table definition. The table can be
+      read in via the *.import* function.
+
+      #+BEGIN_SRC sqlite :db /tmp/example.sqlite :var tbl=table1
+	drop table if exists t1;
+	create table t1 (col1 INTEGER, col2 INTEGER, col3 INTEGER);
+	.import "$tbl" t1
+	select count(*) from t1;
+      #+END_SRC
+
+      
+      #+BEGIN_SRC sqlite :db /tmp/example.sqlite :colnames yes
+	UPDATE t1 SET col3 = 2 * col2;
+	SELECT * FROM t1;
+      #+END_SRC
