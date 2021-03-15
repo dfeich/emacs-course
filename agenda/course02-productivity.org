@@ -235,6 +235,9 @@
       echo "hello world I'm finally here"
       #+end_src 
 
+      #+RESULTS:
+      : hello world I'm finally here
+
       You are asked whether you really want to execute
       the block, and the results get inserted below the block
       
@@ -251,6 +254,10 @@
       echo "hello world I'm finally here"
       #+end_src 
 
+      #+RESULTS:
+      | hello | world | I'm | finally | here |
+      | hello | world | I'm | finally | here |
+
       So, this ended up as a table! Why? Org provides a number
       of options of how it should interpret the results (and what
       actually constitutes the result). You can steer this explicitely
@@ -261,15 +268,27 @@
       echo "hello world I'm finally here"
       #+end_src 
 
+      #+RESULTS:
+      : hello world I'm finally here
+      : hello world I'm finally here
+
       #+begin_src bash :results table
       echo "hello world I'm finally here"
       echo "hello world I'm finally here"
       #+end_src
 
+      #+RESULTS:
+      | hello | world | I'm | finally | here |
+      | hello | world | I'm | finally | here |
+
             #+begin_src bash :results list
       echo "hello world I'm finally here"
       echo "hello world I'm finally here"
       #+end_src 
+
+      #+RESULTS:
+      - ("hello" "world" "I'm" "finally" "here")
+      - ("hello" "world" "I'm" "finally" "here")
 
    4. [ ] The best way to edit a code block in a native language environment
       is to use the standard key-combo "C-c '" (org-edit-special). This will
@@ -295,10 +314,18 @@
 	pwd
       #+end_src
 
+      #+RESULTS:
+      : dflt2w
+      : /home/emacstest/Documents/orgcourse/agenda
+
       #+begin_src bash :results verbatim :dir /tmp
 	hostname
 	pwd
       #+end_src
+
+      #+RESULTS:
+      : dflt2w
+      : /tmp
 
       Note: this feature is most powerful if you combine it with
       Emacs' great TRAMP feature for accessing remote hosts. E.g.
@@ -341,6 +368,9 @@
 
        }
       #+END_SRC
+
+      #+RESULTS:
+      [[file:/tmp/example1.png]]
      
       In order to display that link as an inline image, you just need
       to toggle Org's inline image setting by using the standard
@@ -361,6 +391,9 @@
 	plt.savefig(outfile)
 	return outfile # return filename to org-mode
       #+end_src
+
+      #+RESULTS:
+      [[file:/tmp/python3-example1.png]]
 
 ** Inputting variables, tables, other source blocks into babel
 
@@ -390,8 +423,26 @@
 	select count(*) from t1;
       #+END_SRC
 
+      #+RESULTS:
+      : 11
+
       
       #+BEGIN_SRC sqlite :db /tmp/example.sqlite :colnames yes
 	UPDATE t1 SET col3 = 2 * col2;
 	SELECT * FROM t1;
       #+END_SRC
+
+      #+RESULTS:
+      | col1 | col2 | col3 |
+      |------+------+------|
+      |    5 |   25 |   50 |
+      |    6 |   30 |   60 |
+      |    7 |   35 |   70 |
+      |    8 |   40 |   80 |
+      |    9 |   45 |   90 |
+      |   10 |   50 |  100 |
+      |   11 |   55 |  110 |
+      |   12 |   60 |  120 |
+      |   13 |   65 |  130 |
+      |   14 |   70 |  140 |
+      |   15 |   75 |  150 |

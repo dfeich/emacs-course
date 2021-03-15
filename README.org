@@ -15,7 +15,14 @@
   are done"* I am still at an early point where I try to go through
   the course with some initial learners. So, it is not quite ready yet
   for the general consumption and therefore I also have not yet
-  advertised it in any way.
+  advertised it in any way. The current Emacs configuration for the
+  course will need to be adapted.  
+
+  A nice feature I can offer is auto-generated decks of [[https://apps.ankiweb.net/][Anki]] cards and
+  cheat sheets for the course directly from the course files. Look at
+  the =learning-helpers= forlder. The Anki decks are produced from
+  intermediate org flash-card files thanks to Louie Tan's [[https://github.com/louietan/anki-editor][anki-editor]] )
+  
 
 ** Introduction
 

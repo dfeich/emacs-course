@@ -1,0 +1,61 @@
+   C-x C-f   standard                           find-file
+    <f5> f     custom                     helm-find-files
+   C-x C-s   standard                         save-buffer
+   C-x C-w   standard                          write-file
+     C-x 2   standard                  split-window-below
+     C-x 3   standard                  split-window-right
+     C-x 1   standard                delete-other-windows
+     C-x 0   standard                       delete-window
+     C-x b   standard                       switch-buffer
+   C-x C-b   standard                        list-buffers
+     C-SPC   standard                    set-mark-command
+       C-g   standard                       keyboard-quit
+       C-w   standard                         kill-region
+       C-_   standard                                undo
+       C-y   standard                                yank
+       M-w   standard                      kill-ring-save
+       M-y   standard                            yank-pop
+   C-x SPC   standard                 rectangle-mark-mode
+       C-s   standard                     isearch-forward
+   C-u C-s   standard                     isearch-forward
+       M-x   standard            execute-extended-command
+     C-h f   standard                   describe-function
+     C-h f   standard                   describe-function
+    <f5> x     custom                            helm-M-x
+     C-h m   standard                       describe-mode
+    <f5> d     custom                      helm-descbinds
+     C-h k   standard                        describe-key
+     C-h i   standard                                info
+    <f5> a     custom                        helm-apropos
+    <M-up>     custom                          org-metaup
+<M-S-right>     custom                  org-shiftmetaright
+<M-S-left>     custom                   org-shiftmetaleft
+<M-Return>     custom                     org-meta-return
+  <S-left>     custom                       org-shiftleft
+   C-c C-l   standard                     org-insert-link
+     C-c l     custom                      org-store-link
+   C-c C-t     custom                            org-todo
+   C-c C-s   standard                        org-schedule
+   C-c C-d   standard                        org-deadline
+ <f5> <f5>     custom      helm-org-agenda-files-headings
+     C-c a     custom                          org-agenda
+       M-<   standard                       beg-of-buffer
+       M->   standard                       end-of-buffer
+       C-a   standard              move-beginning-of-line
+       C-e   standard                    move-end-of-line
+     M-g g   standard                           goto-line
+     M-g c   standard                           goto-char
+     C-h f   standard                   describe-function
+     C-h v   standard                   describe-variable
+     C-c .     custom                      org-time-stamp
+     C-c !     custom             org-time-stamp-inactive
+<S-M-right>   standard                  org-shiftmetaright
+<S-M-left>   standard                   org-shiftmetaleft
+  <S-M-up>   standard                     org-shiftmetaup
+     C-c -   standard              org-table-insert-hline
+   C-c C-c   standard                   org-ctrl-c-ctrl-c
+     C-c '   standard                    org-edit-special
+   C-c C-c   standard                   org-ctrl-c-ctrl-c
+   C-c C-,   standard       org-insert-structure-template
+     C-c '   standard                    org-edit-special
+C-c C-x C-v   standard            org-toggle-inline-images

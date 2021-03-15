@@ -1,25 +1,38 @@
 
 # Table of Contents
 
-1.  [An Emacs Course](#orgabecb1e)
-    1.  [Introduction](#org6af2d8e)
-    2.  [Setup](#org3c238b3)
-        1.  [Install the configuration and the course](#org88b343b)
-        2.  [Start Emacs and let it install the required Emacs packages](#org904d461)
-    3.  [Start the course](#org32dcc04)
-        1.  [a short word on the notation of key commands](#org17e3e21)
-        2.  [Activate a theme for better readability](#org6370a5f)
-        3.  [Starting the lessons](#org7a114e6)
-    4.  [Planning of learning stages](#org45b7923)
+1.  [An Emacs Course](#org62a8407)
+    1.  [Introduction](#orgf6f8691)
+    2.  [Setup](#orgad39e8a)
+        1.  [Install the configuration and the course](#org4557c9e)
+        2.  [Start Emacs and let it install the required Emacs packages](#orgbec30c7)
+    3.  [Start the course](#org29a5bda)
+        1.  [a short word on the notation of key commands](#org0091aad)
+        2.  [Activate a theme for better readability](#org7b5396d)
+        3.  [Starting the lessons](#org8c8fc8b)
+        4.  [Starting can be hard](#orgb8e6bd4)
+    4.  [Planning of learning stages](#org2acb90e)
 
 
 
-<a id="orgabecb1e"></a>
+<a id="org62a8407"></a>
 
 # An Emacs Course
 
+**NOTE: This is an early work in progress. Only some initial chapters
+are done"** I am still at an early point where I try to go through
+the course with some initial learners. So, it is not quite ready yet
+for the general consumption and therefore I also have not yet
+advertised it in any way. The current Emacs configuration for the
+course will need to be adapted.  
 
-<a id="org6af2d8e"></a>
+A nice feature I can offer is auto-generated decks of [Anki](https://apps.ankiweb.net/) cards and
+cheat sheets for the course directly from the course files. Look at
+the `learning-helpers` forlder. The Anki decks are produced from
+intermediate org flash-card files thanks to Louie Tan's [anki-editor](https://github.com/louietan/anki-editor) )
+
+
+<a id="orgf6f8691"></a>
 
 ## Introduction
 
@@ -30,48 +43,55 @@ one of the most flexible and well documented programming
 environments that happens to be a very good editor as well, I was
 blown away.
 
-Org mode was a revelation - the dream of every scientist (physical
-chemistry was my original profession). A notebook where you could
-write easy marked up text, math, you could calculate, and as a
-programmer you could use all your programming languages inside of
-the documents and produce graphics inline - too good to be
-true. And then it is one of the best task management systems as
-well. I fell in love, learned lisp - enjoined its different feel from
-the C and scripting languages I knew - something that reminded me of
-the joy of playing with the HP Scientific Calculators many year ago.
+Org mode was a revelation - the dream of every scientist (my
+original training had been in physical chemistry). A notebook where
+you can write easy marked up text, math formulas, you can
+calculate, and as a programmer you can use all your programming
+languages inside of the documents and produce graphics inline - too
+good to be true. And then it is one of the best task management
+systems as well. I fell in love, learned lisp - relished its
+different feel from the C and scripting languages I knew -
+something that reminded me of the joy of playing with the HP
+Scientific Calculators many years ago.
 
 For a long time I entertained the hope of passing on the
-know-how. But it's not so easy, since the thing which makes Emacs so
-great and efficient - its staggering flexibility - also makes it
-tough to teach. Most long time users end up with configurations that
-fit them like a glove. But other users will be very opinionated in regards
-to the packages and optimizations that are used. There's a good number
-of excellent meta-distributions around, like [Spacemacs](https://www.spacemacs.org/) or [Doom](https://github.com/hlissner/doom-emacs). They
-are great and will fit many users. I myself always stayed with my hand-written
-config that I constantly adapted to more modern styles (which prevented
-me from ever declaring the dreaded [Dot Emacs Bankruptcy](https://www.emacswiki.org/emacs/DotEmacsBankruptcy)).
+know-how. I had some mixed success in my work environment where
+several of my scientific computing group picked it up to some
+degree. But I never was able to teach it in a very structured
+way. It's not so easy, since the thing which makes Emacs so great
+and efficient - its staggering flexibility - also makes it tough to
+teach. Most long time users end up with configurations that fit
+them like a glove. But other users will be very opinionated in
+regards to the packages and optimizations that are used. There's a
+good number of excellent meta-distributions around, like [Spacemacs](https://www.spacemacs.org/)
+or [Doom](https://github.com/hlissner/doom-emacs). They are great and will fit many users. I myself always
+stayed with my hand-written config that I constantly adapted to
+more modern styles (which prevented me from ever having to declare
+the dreaded [Dot Emacs Bankruptcy](https://www.emacswiki.org/emacs/DotEmacsBankruptcy)).
 
-I now decided to make a first test run with a course that is based on
-basic configuration of Emacs. I will start with an initial configuration
-that already has a number of nice packages that will wet the appetite.
-But the idea is not that learners shall adopt these exact configurations.
-They should learn how the configuration works and how they can adapt
-it. So, they by themselves will be able to make an informed decision about
-whether they want to adopt one of the meta distributions, change the
+I now decided to make a first test run with a course that is based
+on basic configuration of Emacs. I will start with an initial
+configuration that already has a number of nice packages that will
+serve to wet the appetite. But the idea is not that learners need
+to adopt these exact configurations. They should first get a glimpse
+of what Emacs can do and then progress to learning how the
+configuration works and how they can adapt it. So, they by
+themselves will be able to make an informed decision about whether
+to adopt one of the meta distributions, change the
 present one, or just develop their own.
 
 My big thanks goes to the whole Emacs community. One of the most
-welcoming and helpful communities I had the pleasure to work with.
-So many people have contributed to this products and I feel indebted
-to all of them.
+welcoming and helpful communities I had the pleasure working
+with. So many people have contributed to this environment and I
+feel indebted to all of them.
 
 
-<a id="org3c238b3"></a>
+<a id="orgad39e8a"></a>
 
 ## Setup
 
 
-<a id="org88b343b"></a>
+<a id="org4557c9e"></a>
 
 ### Install the configuration and the course
 
@@ -104,7 +124,7 @@ may take some minutes.
 I use Emacs version 26.3 and Org version 9.x for this course.
 
 
-<a id="org904d461"></a>
+<a id="orgbec30c7"></a>
 
 ### Start Emacs and let it install the required Emacs packages
 
@@ -138,7 +158,7 @@ If it fails repeatedly without progressing further then please
 file an issue in this tracker, and I will try to help.
 
 
-<a id="org32dcc04"></a>
+<a id="org29a5bda"></a>
 
 ## Start the course
 
@@ -147,7 +167,7 @@ Once you have everything installed, start the first stage by typing
     emacs ~/Documents/orgcourse/agenda/course01-basics.org
 
 
-<a id="org17e3e21"></a>
+<a id="org0091aad"></a>
 
 ### a short word on the notation of key commands
 
@@ -155,8 +175,7 @@ Emacs is operated through control key combinations and all Emacs
 documentation uses the following important notation convention for
 the keystrokes:
 
--   **"C-f":** this means hit the `CTRL` key together with the `f` key. The leading
-    key in front of the dash always refers to `CTRL`
+-   **"C-f":** this means press the `CTRL` key together with the `f` key.
 -   **"M-f":** M refers to the `META` key, which on Linux/MS-Windows is
     the `ALT` key (On Macs this can be the `Option` or `Command`
     key). So, `M-f` means press the `ALT` key together with the `f` key
@@ -166,11 +185,27 @@ the keystrokes:
 
 Often commands consist of a key combination like
 
--   **"C-h e":** first press `CTRL` + `h`, then press `e`
--   **"C-c C-c":** press `CTRL` + `c` twice
+-   **"C-h e":** first press `CTRL` + `h`, then press `e`. When keys are connected
+    with a dash, it means they should be pressed together. If a keycode is separated
+    by a space, it should be pressed separately.
+-   **"C-c C-c":** press `CTRL` + `c` twice (which you usually will do by
+    keeping your finder on the `CTRL` key and pressing `c` twice)
+
+**IMPORTANT:** When I use key combinations which are part of the standard
+Emacs distribution, I will always state this by writing something like
+
+> &#x2026; use the standard key-combo "C-x C-f" (find-file) to open a file
+
+When I do not mention the term *standard key-combo*, then the
+command refers to a key-combination that works in this present
+course configuration. It usually will use extra packages (all
+packages come from the Emacs community's official repositories like the
+GNU ELPA, MELPA, and Org). You can naturally change these later on
+and create your own mappings that may better fit your own workflows
+and keyboard layouts. Actually I encourage you to do so.
 
 
-<a id="org6370a5f"></a>
+<a id="org7b5396d"></a>
 
 ### Activate a theme for better readability
 
@@ -189,7 +224,7 @@ button to save the configuration. Then you press `q` to quit this buffer,
 and you will be back in our course's first lessons file.
 
 
-<a id="org7a114e6"></a>
+<a id="org8c8fc8b"></a>
 
 ### Starting the lessons
 
@@ -208,7 +243,23 @@ ready to go
 ![img](README-att/course-start2.png)
 
 
-<a id="org45b7923"></a>
+<a id="orgb8e6bd4"></a>
+
+### Starting can be hard
+
+The problem with such a complete system like Emacs can be that it
+is a bit difficult to find the optimal path of minimal effort. And
+often in order to do a certain thing it would be nice if you already
+could use some other functionality that rather should be taught later
+in another context. So, it's kind of a classical bootstrapping problem.
+I try to minimize these situations, but I'll probably fail a few times
+(e.g. how should you visit a link from inside of emacs in the first chapter
+if the handling of links is only taught later). But I'll try to put some
+additional description in those places. Just fill an issue in this github
+if something seems really way beyond what you think can be understood.
+
+
+<a id="org2acb90e"></a>
 
 ## Planning of learning stages
 
@@ -254,33 +305,36 @@ by filled checkboxes.
     -   [ ] Magit - is there a better Git interface than this project from Jonas Bernoulli?
     -   [ ] Tramp (a killer feature for users working on remote hosts. Loved by
         system administrators and developers)
-    -   [ ] Org capture - create tasks and back-links from everywhere
-    -   [ ] Emacs Macros
+    -   [ ] Emacs keyboard macros
     -   [ ] do inline calculations with Calc
-    -   [ ] dired revisited
+    -   Org mode
+        -   [ ] Org capture - create tasks and back-links from everywhere
+        -   [ ] basic org mode tables
+        -   [ ] simple first steps with Org Babel
+    -   [ ] dired revisited (filename in-buffer editing, etc)
     -   [ ] shell command execution from Emacs
+    -   [ ] gpg for encrypting files
+3.  Emacs for programming
     -   [ ] a look at some of the programming modes
     -   [ ] lsp-mode (a modern IDE interface in Emacs)
     -   [ ] linting (Syntax checking with flycheck)
-    -   [ ] gpg for encrypting files
-3.  Authoring Latex, HTML, and other documents with Org mode
+4.  Authoring Latex, HTML, and other documents with Org mode
     -   [ ] write scientific documents containing math, preview the math
     -   [ ] include graphics and screenshots
-    -   [ ] simple first steps with Org Babel to execute code and
-        create graphics
-4.  Org Babel for real
-5.  Fast Presentations with Latex beamer through Org
-6.  Integrating with your browser
+    -   [ ] Org Babel for executing code and creating graphics from data
+5.  Org Babel for real
+6.  Fast Presentations with Latex beamer through Org
+7.  Integrating with your browser
     -   [ ] Use Emacs to edit forms in browsers like Firefox or Chrome
         (through the daemon)
     -   [ ] org-protocol: transfer information from the browser to Emacs,
         e.g. mark some text in the browser and get it into Emacs, or
         convert a web page to org mode and find it ready in your buffer!
-7.  Emacs and email
+8.  Emacs and email
     -   [ ] mu4e and mbsync to manage email
     -   [ ] integrate email with org mode task management, making
         efficient use of org capture and email links in workflows.
-8.  Emacs for science
+9.  Emacs for science
     -   [ ] helm-bibtex
     -   [ ] org-ref
     -   [ ] org-babel
